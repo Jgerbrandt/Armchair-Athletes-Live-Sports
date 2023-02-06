@@ -52,5 +52,5 @@ jobs:
         with:
           app-name: 'ArmChairAthletes'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_7890404534A84DFFBF0C8BAE33E27864 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_3D44596D6E21455BB94996FAB14E9C1B }}
           package: .
