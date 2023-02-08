@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-const { DATABASE_URL } = process.env;
+const { DB_CONN } = process.env;
 
 const api = express();
 api.use(cors()); // enable CORS on all our requests
@@ -13,7 +13,7 @@ api.use(express.json()); // parses incoming requests with JSON payloads
 api.use(express.urlencoded({ extended: false })); // parses incoming requests with urlencoded payloads
 
 mongoose
-    .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(DATABASE_URL, { DATABASE_NAME: 'armchairathletes-database', useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("DB connection successful"))
     .catch(console.error);
 
