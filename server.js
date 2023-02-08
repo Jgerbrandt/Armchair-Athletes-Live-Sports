@@ -13,7 +13,7 @@ api.use(express.json()); // parses incoming requests with JSON payloads
 api.use(express.urlencoded({ extended: false })); // parses incoming requests with urlencoded payloads
 
 mongoose
-    .connect(DATABASE_URL, { DATABASE_NAME: 'armchairathletes-database', useNewUrlParser: true, useUnifiedTopology: true })
+    .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("DB connection successful"))
     .catch(console.error);
 
