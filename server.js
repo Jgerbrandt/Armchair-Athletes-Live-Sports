@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-const { DB_CONN } = process.env;
+const { DATABASE_URL } = process.env;
 
 const api = express();
 api.use(cors()); // enable CORS on all our requests
