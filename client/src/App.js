@@ -7,6 +7,7 @@ var express = require("express");
 var mongoose = require("mongoose");
 var configData = require("./config/connection");
 
+async function getApp() {
   // Database
   var connectionInfo = await configData.getConnectionInfo();
   mongoose.connect(connectionInfo.DATABASE_URL);
@@ -15,6 +16,10 @@ var configData = require("./config/connection");
 
   var port = normalizePort(process.env.PORT || '3000');
   app.set('port', port);
+
+  return app;
+
+}
 
 function Todo({ todo, changeStatus, remove }) {
   return (
@@ -175,3 +180,7 @@ function App() {
 }
 
 export default App;
+
+module.exports = {
+  getApp
+};
