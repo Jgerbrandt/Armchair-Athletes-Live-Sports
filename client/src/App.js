@@ -3,10 +3,18 @@ import "./App.css";
 import { Button, Card, Form } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+var express = require("express");
+var mongoose = require("mongoose");
+var configData = require("./config/connection");
 
-const server = process.env.REACT_APP_API_BASE_URL
-  ? axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL })
-  : axios.create({});
+  // Database
+  var connectionInfo = await configData.getConnectionInfo();
+  mongoose.connect(connectionInfo.DATABASE_URL);
+
+  var app = express();
+
+  var port = normalizePort(process.env.PORT || '3000');
+  app.set('port', port);
 
 function Todo({ todo, changeStatus, remove }) {
   return (
