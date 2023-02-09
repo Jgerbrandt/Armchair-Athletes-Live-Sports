@@ -7,3 +7,5 @@ This repository is the sample code for the article [https://docs.microsoft.com/e
 read my nuts idiot
 
 amon
+
+bean
