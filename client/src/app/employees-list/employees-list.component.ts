@@ -11,9 +11,9 @@ import { EmployeeService } from '../employee.service';
     <table class="table table-striped table-bordered">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Position</th>
-                <th>Level</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Account Level</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -31,7 +31,7 @@ import { EmployeeService } from '../employee.service';
         </tbody>
     </table>
 
-    <button class="btn btn-primary mt-3" [routerLink]="['new']">Add a New Employee</button>
+    <button class="btn btn-primary mt-3" [routerLink]="['new']">Register</button>
   `
 })
 export class EmployeesListComponent implements OnInit {

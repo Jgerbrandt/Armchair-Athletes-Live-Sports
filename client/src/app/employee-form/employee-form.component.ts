@@ -8,47 +8,47 @@ import { Employee } from '../employee';
   template: `
     <form class="employee-form" autocomplete="off" [formGroup]="employeeForm" (ngSubmit)="submitForm()">
       <div class="form-floating mb-3">
-        <input class="form-control" type="text" id="name" formControlName="name" placeholder="Name" required>
-        <label for="name">Name</label>
+        <input class="form-control" type="text" id="name" formControlName="name" placeholder="name" required>
+        <label for="name">Username</label>
       </div>
 
       <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
         <div *ngIf="name.errors?.['required']">
-          Name is required.
+          Username is required.
         </div>
         <div *ngIf="name.errors?.['minlength']">
-          Name must be at least 3 characters long.
+          Username must be at least 3 characters long.
         </div>
       </div>
 
       <div class="form-floating mb-3">
         <input class="form-control" type="text" formControlName="position" placeholder="Position" required>
-        <label for="position">Position</label>
+        <label for="position">Password</label>
       </div>
 
       <div *ngIf="position.invalid && (position.dirty || position.touched)" class="alert alert-danger">
 
         <div *ngIf="position.errors?.['required']">
-          Position is required.
+          Password is required.
         </div>
         <div *ngIf="position.errors?.['minlength']">
-          Position must be at least 5 characters long.
+          Password must be at least 5 characters long.
         </div>
       </div>
 
       <div class="mb-3">
         <div class="form-check">
-          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-junior" value="junior" required>
-          <label class="form-check-label" for="level-junior">Junior</label>
+          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-junior" value="Regular" required>
+          <label class="form-check-label" for="level-junior">Regular</label>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-mid" value="mid">
-          <label class="form-check-label" for="level-mid">Mid</label>
+          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-mid" value="Premium">
+          <label class="form-check-label" for="level-mid">Premium</label>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-senior"
-            value="senior">
-          <label class="form-check-label" for="level-senior">Senior</label>
+            value="Admin">
+          <label class="form-check-label" for="level-senior">Admin</label>
         </div>
       </div>
 
