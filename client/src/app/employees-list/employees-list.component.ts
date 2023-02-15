@@ -13,7 +13,6 @@ import { EmployeeService } from '../employee.service';
             <tr>
                 <th>Username</th>
                 <th>Password</th>
-                <th>Account Level</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -22,7 +21,6 @@ import { EmployeeService } from '../employee.service';
             <tr *ngFor="let employee of employees$ | async">
                 <td>{{employee.name}}</td>
                 <td>{{employee.position}}</td>
-                <td>{{employee.level}}</td>
                 <td>
                     <button class="btn btn-primary me-1" [routerLink]="['edit/', employee._id]">Edit</button>
                     <button class="btn btn-danger" (click)="deleteEmployee(employee._id || '')">Delete</button>

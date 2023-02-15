@@ -36,21 +36,6 @@ import { Employee } from '../employee';
         </div>
       </div>
 
-      <div class="mb-3">
-        <div class="form-check">
-          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-junior" value="Regular" required>
-          <label class="form-check-label" for="level-junior">Regular</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-mid" value="Premium">
-          <label class="form-check-label" for="level-mid">Premium</label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" formControlName="level" name="level" id="level-senior"
-            value="Admin">
-          <label class="form-check-label" for="level-senior">Admin</label>
-        </div>
-      </div>
 
       <button class="btn btn-primary" type="submit" [disabled]="employeeForm.invalid">Add</button>
     </form>
@@ -79,14 +64,15 @@ export class EmployeeFormComponent implements OnInit {
 
   get name() { return this.employeeForm.get('name')!; }
   get position() { return this.employeeForm.get('position')!; }
-  get level() { return this.employeeForm.get('level')!; }
+  //get level() { return this.employeeForm.get('level')!; }
+  get level() { return 'monkey'; }
 
   ngOnInit() {
     this.initialState.subscribe(employee => {
       this.employeeForm = this.fb.group({
         name: [ employee.name, [Validators.required] ],
         position: [ employee.position, [ Validators.required, Validators.minLength(5) ] ],
-        level: [ employee.level, [Validators.required] ]
+        level: [ 'junior' ]
       });
     });
 
