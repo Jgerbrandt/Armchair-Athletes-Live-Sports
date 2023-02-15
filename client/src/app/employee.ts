@@ -1,6 +1,6 @@
 export interface Employee {
     name?: string;
     position?: string;
-    level?: 'junior' | 'mid' | 'senior';
+    level?: 'junior' | 'Premium' | 'Admin';
     _id?: string;
 }
