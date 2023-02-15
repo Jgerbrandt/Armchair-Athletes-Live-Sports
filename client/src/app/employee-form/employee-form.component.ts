@@ -65,7 +65,7 @@ export class EmployeeFormComponent implements OnInit {
   get name() { return this.employeeForm.get('name')!; }
   get position() { return this.employeeForm.get('position')!; }
   //get level() { return this.employeeForm.get('level')!; }
-  get level() { return 'monkey'; }
+  get level() { return 'junior'; }
 
   ngOnInit() {
     this.initialState.subscribe(employee => {
