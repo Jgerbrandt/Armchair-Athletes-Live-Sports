@@ -6,7 +6,8 @@ import { Component } from '@angular/core';
     <div>
     This is a navbar
     </div>
-    `
+    `,
+    styleUrls: ['./navbar/navbar.css']
 })
 export class Navbar{
     //Functions go here
