@@ -5,7 +5,7 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component'; //
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component'; // <-- add this line
 
 const routes: Routes = [
-  { path: '', redirectTo: 'employees', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'employees', component: EmployeesListComponent },
   { path: 'employees/new', component: AddEmployeeComponent }, // <-- add this line
   { path: 'employees/edit/:id', component: EditEmployeeComponent }]; // <-- add this line
