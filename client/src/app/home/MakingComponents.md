@@ -1,19 +1,17 @@
 1. New folder for each new component 
         Nestest Files OK (Ex. /navbar/login)
+        Each folder: typescript, html, css
 
-2. Structure for new component:
+2. Structure for new component typescript:
 ----------------------------------------
 import { Component } from '@angular/core';
-
+//Replace NAME with component name
 @Component({
-  selector: 'app-COMPONENT_NAME',
-  template: `
-    <div>
-        HTML
-    </div>
-    `
+  selector: 'app-NAME',
+  templateUrl: './NAME.component.html', 
+  styleUrls: ['./NAME.component.css']
 })
-export class Home{
+export class NAME{
     //Functions go here
 }
 --------------------------------
