@@ -11,6 +11,8 @@ import { AddEmployeeComponent } from './add-employee/add-employee.component';
 import { EditEmployeeComponent } from './edit-employee/edit-employee.component'; // <-- add this line
 import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
+import { Login }  from './navbar/login/login.component';
+import { Register } from './navbar/register/register.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { Navbar } from './navbar/navbar.component';
     AddEmployeeComponent,
     EditEmployeeComponent,
     Home,
-    Navbar
+    Navbar,
+    Login,
+    Register
   ],
   imports: [
     BrowserModule,
