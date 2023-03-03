@@ -45,17 +45,16 @@ export class Register{
     get password() { return this.userForm.get('password')!; }
 
     submitForm(){
-    //   this.formSubmitted.emit(this.userForm.value);
-    //   this.userService.createUser(this.userForm.value)
-    //   .subscribe({
-    //     next: () => {
-    //       this.router.navigate(['/home']);
-    //     },
-    //     error: (error) => {
-    //       alert("Failed to create new user");
-    //       alert(this.userForm.value.username);
-    //       console.error(error);
-    //     }
-    //   });
+      this.userService.createUser(this.userForm.value)
+      .subscribe({
+        next: () => {
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          alert("Failed to create new user");
+          alert(this.userForm.value.username);
+          console.error(error);
+        }
+      });
     }
 }
