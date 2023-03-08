@@ -21,9 +21,6 @@ export class Register{
 
     @Output()
     formSubmitted = new EventEmitter<User>();
-
-    
-    
     
     ngOnInit() {
       this.initialState.subscribe(user => {
@@ -44,7 +41,8 @@ export class Register{
     get username() { return this.userForm.get('username')!; }
     get password() { return this.userForm.get('password')!; }
 
-    submitForm(){
+    // submitForm(){
+    //   console.log("test 1");
     //   this.formSubmitted.emit(this.userForm.value);
     //   this.userService.createUser(this.userForm.value)
     //   .subscribe({
@@ -52,10 +50,29 @@ export class Register{
     //       this.router.navigate(['/home']);
     //     },
     //     error: (error) => {
+    //       console.log("test in error");
     //       alert("Failed to create new user");
     //       alert(this.userForm.value.username);
     //       console.error(error);
     //     }
     //   });
+    //   console.log("test 2");
+    // }
+
+    addUser(user: User) {
+      console.log("test1");
+      this.userService.createUser(user)
+        .subscribe({
+          next: () => {
+            console.log("success");
+            this.router.navigate(['/home']);
+          },
+          error: (error) => {
+            alert("Failed to create user");
+            console.log("in error");
+            console.error(error);
+          }
+        });
+        console.log("test2");
     }
 }

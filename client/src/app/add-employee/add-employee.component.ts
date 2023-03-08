@@ -10,6 +10,7 @@ import { EmployeeService } from '../employee.service';
     <app-employee-form (formSubmitted)="addEmployee($event)"></app-employee-form>
   `
 })
+
 export class AddEmployeeComponent {
   constructor(
     private router: Router,
@@ -17,15 +18,19 @@ export class AddEmployeeComponent {
   ) { }
 
   addEmployee(employee: Employee) {
+    console.log("test1");
     this.employeeService.createEmployee(employee)
       .subscribe({
         next: () => {
-          this.router.navigate(['/employees']);
+          console.log("success");
+          this.router.navigate(['../home']);
         },
         error: (error) => {
           alert("Failed to create employee");
           console.error(error);
+          console.log("error");
         }
       });
+      console.log("test2");
   }
 }

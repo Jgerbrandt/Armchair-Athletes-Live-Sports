@@ -34,7 +34,7 @@ employeeRouter.post("/", async (req, res) => {
     try {
         const employee = req.body;
         const result = await collections.employees.insertOne(employee);
-
+        console.log("at server side");
         if (result.acknowledged) {
             res.status(201).send(`Created a new employee: ID ${result.insertedId}.`);
         } else {

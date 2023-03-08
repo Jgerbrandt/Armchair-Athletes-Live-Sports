@@ -29,7 +29,10 @@ export class EmployeeService {
   }
 
   createEmployee(employee: Employee): Observable<string> {
-    return this.httpClient.post(`${this.url}/employees`, employee, { responseType: 'text' });
+    console.log("in employee services");
+    let httpReplyThing = this.httpClient.post(`${this.url}/employees`, employee, { responseType: 'text' });
+    console.log(httpReplyThing);
+    return httpReplyThing;
   }
 
   updateEmployee(id: string, employee: Employee): Observable<string> {

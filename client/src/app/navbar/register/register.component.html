@@ -1,6 +1,6 @@
 <div class="register">
     Register Screen
-        <form class="employee-form" autocomplete="off" [formGroup]="userForm" (ngSubmit)="submitForm()">
+        <form class="employee-form" autocomplete="off" [formGroup]="userForm" (ngSubmit)="addUser($event)">
             <div class="form-floating mb-3">
               <input class="form-control" type="text" id="username" formControlName="username" placeholder="Username" required>
               <label for="name">Username</label>
