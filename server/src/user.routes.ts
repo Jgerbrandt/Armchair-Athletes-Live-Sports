@@ -7,8 +7,8 @@ userRouter.use(express.json());
 
 userRouter.get("/", async (_req, res) => {
     try {
-        const employees = await collections.employees.find({}).toArray();
-        res.status(200).send(employees);
+        const user = await collections.users.find({}).toArray();
+        res.status(200).send(user);
     } catch (error) {
         res.status(500).send(error.message);
     }
@@ -32,9 +32,9 @@ userRouter.get("/:id", async (req, res) => {
 
 userRouter.post("/", async (req, res) => {
     try {
-        const user = req.body;
-        const result = await collections.users.insertOne(user);
-
+        const employee = req.body;
+        const result = await collections.users.insertOne(employee);
+        console.log("at server side");
         if (result.acknowledged) {
             res.status(201).send(`Created a new user: ID ${result.insertedId}.`);
         } else {

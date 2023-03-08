@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
-import { User } from 'src/app/UserObject/user';
-import {UserService} from '../../UserObject/user.service';
+import { User } from 'src/app/user';
+import { UserService } from '../../user.service';
 
 @Component({
   selector: 'app-register',
