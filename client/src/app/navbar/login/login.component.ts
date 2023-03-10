@@ -32,13 +32,10 @@ export class Login{
       });
   }
 
+  //Functions go here
+  employeeForm: FormGroup = new FormGroup({});
 
-
-
-    //Functions go here
-    employeeForm: FormGroup = new FormGroup({});
-
-    submitForm(){
-        alert("Hello");
-    }
+  submitForm(){
+      alert("Hello");
+  }
 }
