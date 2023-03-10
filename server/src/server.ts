@@ -3,7 +3,6 @@ import cors from "cors";
 import express from "express";
 import { connectToDatabase } from "./database";
 import { userRouter } from "./user.routes";
-// import * as userRoutes from "./user.routes";
 
 // Load environment variables from the .env file, where the ATLAS_URI is configured
 dotenv.config();

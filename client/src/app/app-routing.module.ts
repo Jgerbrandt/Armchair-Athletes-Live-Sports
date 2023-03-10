@@ -7,7 +7,7 @@ import { EditUserComponent } from './edit-user/edit-user.component'; // <-- add 
 //aaron stuff VvVVVV
 import { Home } from './home/home.component';
 import { Login } from './navbar/login/login.component'
-import { Register } from './navbar/register/register.component';
+//import { Register } from './navbar/register/register.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },

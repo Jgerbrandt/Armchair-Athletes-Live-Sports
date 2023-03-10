@@ -1,10 +1,8 @@
 import * as mongodb from "mongodb";
 import { User } from "./user";
-//import { User } from "./user";
 
 export const collections: {
     users?: mongodb.Collection<User>;
-    //users?: mongodb.Collection<User>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -15,9 +13,7 @@ export async function connectToDatabase(uri: string) {
     await applySchemaValidation(db);
 
     const usersCollection = db.collection<User>("users");
-    //const userCollection = db.collection<User>("users");
     collections.users = usersCollection;
-    //collections.users = userCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
@@ -54,35 +50,3 @@ async function applySchemaValidation(db: mongodb.Db) {
         }
     });
 }
-
-// async function applySchemaValidation2(db: mongodb.Db) {
-//     const jsonSchema2 = {
-//         $jsonSchema: {
-//             bsonType: "object",
-//             required: ["username", "password"],
-//             additionalProperties: false,
-//             properties: {
-//                 _id: {},
-//                 username: {
-//                     bsonType: "string",
-//                     description: "'username' is required and is a string",
-//                 },
-//                 password: {
-//                     bsonType: "string",
-//                     description: "'password' is required and is a string",
-//                     minLength: 4
-//                 },
-//             },
-//         },
-//     };
-    
-//     await db.command({
-//         collMod: "users",
-//         validator: jsonSchema2
-//     }).catch(async (error: mongodb.MongoServerError) => {
-//         if (error.codeName === "NamespaceNotFound") {
-//             await db.createCollection("employees", {validator: jsonSchema2});
-//         }
-//     });
-
-// }

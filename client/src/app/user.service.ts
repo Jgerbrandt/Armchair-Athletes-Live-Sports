@@ -24,14 +24,20 @@ export class UserService {
     return this.users$;
   }
 
+  checkUser(user: User): Observable<User> {
+    this.refreshUsers();
+    console.log(this.users$.asObservable.toString);
+    console.log("we did in fact make it to this point");
+    
+    return this.httpClient.get<User>(`${this.url}/users/${user.username}/${user.password}`);
+  }
+
   getUser(id: string): Observable<User> {
     return this.httpClient.get<User>(`${this.url}/users/${id}`);
   }
 
   createUser(user: User): Observable<string> {
-    //console.log("in user services");
     let httpReplyThing = this.httpClient.post(`${this.url}/users`, user, { responseType: 'text' });
-    //console.log(httpReplyThing);
     return httpReplyThing;
   }
 

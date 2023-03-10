@@ -18,19 +18,19 @@ export class AddUserComponent {
   ) { }
 
   addUser(user: User) {
-    console.log("test1");
+    //console.log("test1");
     this.userService.createUser(user)
       .subscribe({
         next: () => {
-          console.log("success");
+          //console.log("success");
           this.router.navigate(['../home']);
         },
         error: (error) => {
           alert("Failed to create user");
           console.error(error);
-          console.log("error");
+          //console.log("error");
         }
       });
-      console.log("test2");
+      //console.log("test2");
   }
 }
