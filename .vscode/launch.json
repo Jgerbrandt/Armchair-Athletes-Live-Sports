@@ -1,0 +1,34 @@
+{
+    "configurations": [
+        {
+            "name": "Cloud Run: Run/Debug Locally",
+            "type": "cloudcode.cloudrun",
+            "request": "launch",
+            "build": {
+                "docker": {
+                    "path": "client/Dockerfile"
+                }
+            },
+            "image": "Armchair-Athletes-Live-Sports",
+            "service": {
+                "name": "armchairathletes",
+                "containerPort": 8080,
+                "env": [
+                    {
+                        "name": "ATLAS_URI=",
+                        "value": "mongodb+srv://jgerb:dbpass@armchairathletes.xnjlk.mongodb.net/?retryWrites=true&w=majority"
+                    }
+                ],
+                "resources": {
+                    "limits": {
+                        "memory": "256Mi"
+                    }
+                }
+            },
+            "target": {
+                "minikube": {}
+            },
+            "watch": true
+        }
+    ]
+}

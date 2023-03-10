@@ -14,7 +14,6 @@ import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
 import { Register } from './navbar/register/register.component';
 import { Standings } from './navbar/standings/standings.component';
-import { StandingsDirective } from './navbar/standings/standings.directive';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { StandingsDirective } from './navbar/standings/standings.directive';
     Navbar,
     Login,
     Register,
-    Standings,
-    StandingsDirective,
+    Standings
   ],
   imports: [
     BrowserModule,
