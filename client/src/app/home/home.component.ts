@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class Home{
-    //Functions go here
+  // updateText(){
+  //   let widget = document.getElementById("wg-api-hockey-standings");
+  //   text?.innerHTML 
+  // }
 }
