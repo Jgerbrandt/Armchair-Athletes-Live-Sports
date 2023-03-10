@@ -55,7 +55,9 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/standings.widget.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -122,6 +124,7 @@
   },
   "defaultProject": "client",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "defaultCollection": "@angular-eslint/schematics",
+    "analytics": false
   }
 }

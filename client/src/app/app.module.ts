@@ -13,6 +13,8 @@ import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
 import { Register } from './navbar/register/register.component';
+import { Standings } from './navbar/standings/standings.component';
+import { StandingsDirective } from './navbar/standings/standings.directive';
 
 @NgModule({
   declarations: [
@@ -24,13 +26,15 @@ import { Register } from './navbar/register/register.component';
     Home,
     Navbar,
     Login,
-    Register
+    Register,
+    Standings,
+    StandingsDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule // <-- add this line
+    ReactiveFormsModule, // <-- add this line
   ],
   providers: [],
   bootstrap: [AppComponent]
