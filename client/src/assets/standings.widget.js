@@ -10,37 +10,36 @@ function getStandings(){
         , l = t.getAttribute("data-season")
         , r = t.getAttribute("data-show-errors")
         , n = t.getAttribute("data-show-logos");
-        hockey_standings(d, l, a, e, r, n, !1)
-    }
-
-    function w(t) {
-        let a = "./widgets.css"
-        , e = "./widgets.css"
-        , s = !1
-        , d = !1
-        , l = document.getElementsByTagName("link");
-        for (var r = 0; r < l.length; r++) {
-            let t = l[r];
-            t.getAttribute("href") === a && (s = !0),
-            t.getAttribute("href") === e && (d = !0)
-        }
-        if ("false" !== t && !s) {
-            let t = document.createElement("link");
-            t.type = "text/css",
-            t.rel = "stylesheet",
-            t.href = a,
-            document.getElementsByTagName("head")[0].appendChild(t)
-        }
-        if (("grey" === t || "dark" === t) && !d) {
-            let t = document.createElement("link");
-            t.type = "text/css",
-            t.rel = "stylesheet",
-            t.href = e,
-            document.getElementsByTagName("head")[0].appendChild(t)
-        }
+        w(s), hockey_standings(d, l, a, e, r, n, !1)
     }
 }
 
+async function w(t) {
+    let a = "./widgets.css"
+    , e = "./widgets.css"
+    , s = !1
+    , d = !1
+    , l = document.getElementsByTagName("link");
+    for (var r = 0; r < l.length; r++) {
+        let t = l[r];
+        t.getAttribute("href") === a && (s = !0),
+        t.getAttribute("href") === e && (d = !0)
+    }
+    if ("false" !== t && !s) {
+        let t = document.createElement("link");
+        t.type = "text/css",
+        t.rel = "stylesheet",
+        t.href = a,
+        document.getElementsByTagName("head")[0].appendChild(t)
+    }
+    if (("grey" === t || "dark" === t) && !d) {
+        let t = document.createElement("link");
+        t.type = "text/css",
+        t.rel = "stylesheet",
+        t.href = e,
+        document.getElementsByTagName("head")[0].appendChild(t)
+    }
+}
 
 /*
 t = league

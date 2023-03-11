@@ -13,7 +13,9 @@ import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
 import { Register } from './navbar/register/register.component';
-import { Standings } from './navbar/standings/standings.component';
+import { NHLStandings } from './navbar/standings/nhlstandings.component';
+import { AHLStandings } from './navbar/standings/ahlstandings.component';
+import { NHLGames } from './navbar/nhlgames/nhlgames.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { Standings } from './navbar/standings/standings.component';
     Navbar,
     Login,
     Register,
-    Standings
+    NHLStandings,
+    AHLStandings,
+    NHLGames
   ],
   imports: [
     BrowserModule,

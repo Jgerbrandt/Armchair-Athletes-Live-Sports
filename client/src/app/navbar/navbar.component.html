@@ -2,5 +2,19 @@
     This is a navbar
     <button [routerLink]="['login/']">Login</button>
     <button [routerLink]="['register/']">Register</button>
-    <button [routerLink]="['standings/']">Standings</button>
+    <div class="drop">
+        <button class="dropbtn">View Standings</button>
+            <div class="drop-content">
+                <button [routerLink]="['nhlstandings/']" class="dropitem">NHL Standings</button>
+                <button [routerLink]="['ahlstandings/']" class="dropitem">AHL Standings</button>
+            </div>
+    </div>
+
+        <div class="drop">
+            <button class="dropbtn">View Games</button>
+                <div class="drop-content">
+                    <button [routerLink]="['nhlgames/']" class="dropitem">NHL Games</button>
+                    <button [routerLink]="['']" class="dropitem">AHL Standings</button>
+                </div>
+        </div>
 </div>

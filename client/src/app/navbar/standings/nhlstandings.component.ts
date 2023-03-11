@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 declare function getStandings():any;
 
 @Component({
-  selector: 'app-standings',
-  templateUrl: './standings.component.html', 
+  selector: 'app-nhlstandings',
+  templateUrl: './nhlstandings.component.html', 
   styleUrls: ['./standings.css'],
 })
-export class Standings implements OnInit {	
+export class NHLStandings implements OnInit {	
   title = "standings";
 
   ngOnInit() : void {
