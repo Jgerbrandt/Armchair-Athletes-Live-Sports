@@ -8,16 +8,13 @@ import { User } from 'src/app/user';
   template: `
     <form class="user-form" autocomplete="off" [formGroup]="userForm" (ngSubmit)="submitForm()">
       <div class="form-floating mb-3">
-        <input class="form-control" type="text" id="username" formControlName="username" placeholder="Username" required>
-        <label for="username">Username</label>
+        <input class="form-control" type="text" id="email" formControlName="email" placeholder="email@example.com" required>
+        <label for="email">Email</label>
       </div>
 
-      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
-        <div *ngIf="username.errors?.['required']">
-          A Username is required.
-        </div>
-        <div *ngIf="username.errors?.['minlength']">
-          Username must be at least 3 characters long.
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors?.['required']">
+          An Email is required.
         </div>
       </div>
 
@@ -27,12 +24,8 @@ import { User } from 'src/app/user';
       </div>
 
       <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-
         <div *ngIf="password.errors?.['required']">
           A Password is required.
-        </div>
-        <div *ngIf="password.errors?.['minlength']">
-          Password must be at least 4 characters long.
         </div>
       </div>
 
@@ -41,7 +34,7 @@ import { User } from 'src/app/user';
   `,
   styles: [
     `.user-form {
-      max-width: 560px;
+      max-width: 1000px;
       margin-left: auto;
       margin-right: auto;
     }`
@@ -61,14 +54,14 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder) { }
 
-  get username() { return this.userForm.get('username')!; }
+  get email() { return this.userForm.get('email')!; }
   get password() { return this.userForm.get('password')!; }
 
   ngOnInit() {
     this.initialState.subscribe(user => {
       this.userForm = this.fb.group({
-        username: [ user.username, [Validators.required] ],
-        password: [ user.password, [ Validators.required, Validators.minLength(4) ] ]
+        email: [ user.email, [Validators.required]],
+        password: [ user.password, [ Validators.required] ]
       });
     });
 
