@@ -22,23 +22,20 @@ export class Login{
       .subscribe({
         next: () => {
           //todo: here we need to store user somewhere maybe with cookies or something
-          alert("welcome " + user.username);
+          alert("Welcome back");
           this.router.navigate(['../home']);
         },
         error: (error) => {
-          alert("Failed to find user");
+          alert("Incorrect Email or Password");
           console.error(error);
         }
       });
   }
 
+  //Functions go here
+  employeeForm: FormGroup = new FormGroup({});
 
-
-
-    //Functions go here
-    employeeForm: FormGroup = new FormGroup({});
-
-    submitForm(){
-        alert("Hello");
-    }
+  submitForm(){
+    //not sure what this is for..
+  }
 }

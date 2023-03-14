@@ -13,6 +13,7 @@ import { UserService } from '../user.service';
             <tr>
                 <th>Username</th>
                 <th>Password</th>
+                <th>Email</th>
                 <th>Action</th>
             </tr>
         </thead>
@@ -21,6 +22,7 @@ import { UserService } from '../user.service';
             <tr *ngFor="let user of users$ | async">
                 <td>{{user.username}}</td>
                 <td>{{user.password}}</td>
+                <td>{{user.email}}</td>
                 <td>
                     <button class="btn btn-primary me-1" [routerLink]="['edit/', user._id]">Edit</button>
                     <button class="btn btn-danger" (click)="deleteUser(user._id || '')">Delete</button>
