@@ -1,3 +1,36 @@
 .navbar{
     background-color: lightblue;
 }
+
+.dropbtn{
+	text-align: center;
+	display: inline;
+ }
+ 
+ .drop-content{
+    display: none;
+    position: fixed;
+    text-align: left;
+    z-index: 1;
+    border: 2px;
+}
+
+ .drop{
+	 position: relative;
+	 display: inline-block;
+ }
+ 
+ .dropitem {
+    border: 0px;
+ }
+ 
+ .drop-content:hover {
+    color: #f1f1f1;
+    text-decoration: underline;
+}
+
+.dropitem:hover {
+    text-decoration: underline;
+}
+ 
+ .drop:hover .drop-content {display: block;}

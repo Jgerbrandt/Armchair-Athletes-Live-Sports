@@ -14,7 +14,6 @@ import { EditUserComponent } from './edit-user/edit-user.component'; // <-- add 
 import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
-import { LoginFormComponent } from './navbar/login/login-form.components';
 //import { Register } from './navbar/register/register.component';
 
 @NgModule({
@@ -27,14 +26,13 @@ import { LoginFormComponent } from './navbar/login/login-form.components';
     Home,
     Navbar,
     Login,
-    LoginFormComponent
     //Register
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule // <-- add this line
+    ReactiveFormsModule, // <-- add this line
   ],
   providers: [],
   bootstrap: [AppComponent]

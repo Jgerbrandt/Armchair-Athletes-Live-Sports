@@ -1,0 +1,719 @@
+:root {
+    --font: "Raleway", sans-serif;
+
+    --background-color: #fff;
+    --background-color-header: #e9ecef;
+    --color-text: #000;
+    --color-text-header: #000;
+    --color-green: #01d099;
+    --color-red: #f64e60;
+    --color-yellow: #ffa800;
+
+    --primary-font-size: 11px;
+    --secondary-font-size: 10px;
+    --header-font-size: 11px;
+    --header-text-transform: uppercase;
+    --header-link-text-transform: none;
+
+    --border-bottom: 0.5px solid var(--background-color-header); /* 0px for no border */
+    --primary-padding: 3px 3px;
+    --primary-line-height: 13px;
+    --secondary-padding: .3rem; /* For Headers Only */
+
+    --button-info-font-size: 9px ;/* Only for info button */
+    --button-info-line-height: 16px ; /* Only for info button */
+
+    /* TOOLBAR */
+    --toolbar-font-size: var(--header-font-size);
+
+    /* MODALE */
+    --modale-background-overlay: rgba(0,0,0,0.4); /* Only for modale */
+    --modale-close-size: 28px; /* Only for the close button in the modale */
+    --modale-score-size: 36px;
+    --modale-teams-size: 13px;
+
+    /* STANDINGS WIDGET ONLY */
+    --standings-team-form-font-size: 9px; /* Only for team form and info button */
+    --standings-team-form-line-height: 16px;
+
+    /* LOGOS / FLAGS */
+    --flags-size: 16px;
+    --teams-logo-size: 16px;
+    --teams-logo-modal-size: 90%;
+    --teams-logo-block-modal-size: 85px;
+    --teams-logo-block-radius-modal: 5px;
+    --teams-logo-block-background-modal: var(--background-color-header);
+}
+
+.wg-table {
+    font-family: var(--font);
+    width:100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: var(--primary-padding);
+    font-size: var(--primary-font-size);
+    letter-spacing: 0px;
+    line-height: var(--primary-line-height);
+    vertical-align: middle;
+    background: var(--background-color);
+    color: var(--color-text);
+    border-bottom: var(--border-bottom);
+}
+
+td > span {
+    vertical-align: middle;
+}
+
+.wg_no_data {
+    padding: var(--secondary-padding);
+    font-size: var(--primary-font-size);
+    letter-spacing: 0px;
+    line-height: var(--primary-line-height);
+    margin: auto;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 600;
+    background: var(--background-color);
+    color: var(--color-text);
+}
+
+.wg_toolbar {
+    font-family: var(--font);
+    padding: var(--secondary-padding);
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: var(--toolbar-font-size);
+    font-weight: 600;
+    line-height: initial;
+    background: var(--background-color);
+    color: var(--color-text-header);
+}
+
+.wg_toolbar > span {
+    font-family: var(--font);
+    font-size: var(--toolbar-font-size);
+    letter-spacing: normal;
+}
+
+.wg_header {
+    padding: var(--secondary-padding);
+    font-size: var(--header-font-size);
+    font-weight: 600;
+    background: var(--background-color-header);
+    color: var(--color-text-header);
+    text-transform: var(--header-text-transform);
+}
+
+.wg_header > span {
+    padding-left: 5px;
+    vertical-align: middle;
+}
+
+.wb_header_link {
+    font-size: var(--secondary-font-size);
+    font-weight: 350;
+    float: right;
+    margin-right: 10px;
+    cursor: pointer;
+    text-decoration: underline;
+    text-transform: var(--header-link-text-transform);
+}
+
+.wg_logo {
+    width:var(--teams-logo-size);
+    vertical-align: middle;
+}
+
+.wg_logo_game {
+    /*height:var(--teams-logo-modal-size);*/
+    vertical-align: middle;
+    max-width: var(--teams-logo-modal-size);
+    max-height: var(--teams-logo-modal-size);
+}
+
+
+.wb_img_block {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--teams-logo-block-background-modal);
+    width: var(--teams-logo-block-modal-size);
+    height: var(--teams-logo-block-modal-size);
+    border-radius: var(--teams-logo-block-radius-modal);
+}
+
+
+.wg_flag {
+    width: var(--flags-size);
+    vertical-align: middle;
+}
+
+.wg_no_border {
+    border:0px;
+}
+.wg_text_left {
+    text-align: left;
+}
+.wg_text_right {
+    text-align: right;
+}
+.wg_text_center {
+    text-align: center;
+}
+.wg_bolder {
+    font-weight: bold;
+}
+.wg_bolder_300 {
+    font-weight: 300;
+}
+.wg_bolder_600 {
+    font-weight: 600;
+}
+
+.wg_progress_bar {
+    margin-top: -3px;
+    width:100%;
+    background: var(--background-color-header);
+}
+.wg_progress_bar_green {
+    height: 6px;
+    background-color: var(--color-green);
+}
+.wg_progress_bar_red {
+    height: 6px;
+    background-color: var(--color-red);
+}
+.wg_progress_bar_home {
+    transform: scaleX(-1);
+}
+
+.wg_progress {
+    animation: tilt 2s linear infinite;
+    font-weight: bold;
+    color: var(--color-red);
+}
+@keyframes tilt {
+    50% { opacity: 0; }
+}
+
+.wg_liveTime {
+    color: var(--color-red);
+}
+.wg_breakTime {
+    font-weight: 600;
+    background: var(--color-green);
+    color: var(--background-color);
+}
+.wg_finished {
+    color: var(--color-green);
+}
+.wg_canceled {
+    color: var(--color-yellow);
+}
+.wg_form {
+    display: inline-block;
+    margin: 1px;
+    width: 14px;
+    height: 14px;
+    line-height: var(--standings-team-form-line-height);
+    font-size: var(--standings-team-form-font-size);
+    text-align: center;
+    position: relative;
+    color: #fff;
+}
+
+.wg_form_win {
+    background: var(--color-green);
+}
+.wg_form_draw {
+    background: var(--color-yellow);
+}
+.wg_form_lose {
+    background: var(--color-red);
+}
+
+.wg_info {
+    display: inline-block;
+    border-radius: 14px;
+    margin: 1px;
+    width: 14px;
+    height: 14px;
+    line-height: var(--button-info-line-height);
+    font-size: var(--button-info-font-size);
+    text-align: center;
+    position: relative;
+    color: #fff;
+    background: var(--background-color-header);
+}
+
+.wg_width_90 {
+    width: 90px;
+}
+.wg_width_80 {
+    width: 80px;
+}
+.wg_width_70 {
+    width: 70px;
+}
+.wg_width_60 {
+    width: 60px;
+}
+.wg_width_50 {
+    width: 50px;
+}
+.wg_width_30 {
+    width: 30px;
+}
+.wg_width_25 {
+    width: 25px;
+}
+.wg_width_20 {
+    width: 20px;
+}
+.wg_p_lr_0 {
+    padding-left:0px;
+    padding-right:0px;
+}
+.wg_p_lr_1 {
+    padding-left:1px;
+    padding-right:1px;
+}
+.wg_p_lr_2 {
+    padding-left:2px;
+    padding-right:2px;
+}
+.wg_p_lr_3 {
+    padding-left:3px;
+    padding-right:3px;
+}
+.wg_p_lr_4 {
+    padding-left:4px;
+    padding-right:4px;
+}
+.wg_p_lr_5 {
+    padding-left:5px;
+    padding-right:5px;
+}
+
+.wg_p_tb_10 {
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.wg_nowrap {
+    white-space: nowrap;
+}
+.wg_width_33_p {
+    width: 33%;
+}
+.wg_width_34_p {
+    width: 34%;
+}
+.wg_width_50_p {
+    width: 50%;
+}
+
+.wg_loader:after {
+  content: " ";
+  display: block;
+  width: 45px;
+  height: 45px;
+  margin: auto;
+  border-radius: 50%;
+  border: 6px solid var(--color-green);
+  border-color: var(--color-green) transparent var(--color-green) transparent;
+  animation: wg_dual_ring 1.2s linear infinite;
+}
+@keyframes wg_dual_ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.wg_tooltip {
+  cursor: pointer;
+}
+.wg_tooltip:hover {
+  position:relative;
+}
+
+.wg_tooltip:before {
+    content: attr(data-text);
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    left:100%;
+    margin-left:0px;
+    min-width: 80px;
+    max-width: 200px;
+    width: auto;
+    padding:5px;
+    border-radius:3px;
+    background:var(--color-text);
+    color: var(--background-color);
+    text-align:center;
+    display:none;
+    z-index: 99999;
+}
+
+.wg_tooltip:hover:before {
+    display:block;
+}
+
+.wg_tooltip.wg_tooltip_left:before {
+  left:initial;
+  margin:initial;
+  right:100%;
+  margin-right:0px;
+}
+
+.wg_arrow {
+    float: right;
+    cursor: pointer;
+    padding-left:0px !important;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.wg_arrow_down {
+    transform: rotate(90deg);
+}
+.wg_arrow_up {
+    transform: rotate(-90deg);
+}
+.wg_hide {
+    display: none;
+}
+
+.wg_button_toggle {
+    padding: 5px;
+    cursor: pointer;
+}
+
+.wg_button_toggle_game {
+    padding: 5px;
+    cursor: pointer;
+    margin-left:-5px;
+}
+
+.wg_active {
+    background: var(--color-green);
+    color: var(--background-color);
+}
+
+ .wg_absolute {
+     position: absolute;
+ }
+
+.wg_color_theme {
+    color : var(--color-text);
+}
+
+.wg_modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: var(--modale-background-overlay);
+}
+
+.wg_modal_content {
+  background-color: var(--background-color);
+  margin: 10% auto;
+  padding: 15px;
+  padding-top: 5px;
+  border: 1px solid var(--background-color-header);
+  width: 90%;
+}
+
+.wg_modal_close {
+  color: var(--background-color-header);
+  float: right;
+  font-size: var(--modale-close-size);
+  font-weight: bold;
+}
+
+.wg_modal_close:hover,
+.wg_modal_close:focus {
+  color: var(--color-text);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.wg_modal_score {
+    font-size: var(--modale-score-size);
+    font-weight: bold;
+}
+
+.wg_modal_team {
+    font-size: var(--modale-teams-size);
+}
+
+.wg-dropbtn {
+  background-color: var(--color-green);
+  color: var(--background-color);
+  padding: 5px 15px;
+  cursor: pointer;
+}
+
+.wg-dropdown {
+  position: relative;
+  float: right;
+}
+
+.wg-dropdown-content {
+  margin-top:5px;
+  display: none;
+  position: absolute;
+  background-color: var(--background-color);
+  min-width: 86px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.wg-dropdown-content a {
+  color: var(--color-text);
+  padding: 5px 7px;
+  text-decoration: none;
+  text-align:center;
+  display: block;
+  font-weight: 300
+}
+
+.wg-dropdown-content a:hover {
+    background-color: var(--background-color-header);
+    color: var(--color-text);
+}
+
+.wg-dropdown:hover .wg-dropdown-content {
+  display: block;
+}
+
+.wg-dropdown:hover .wg-dropbtn {
+  background-color: var(--color-green);
+}
+
+.wg-dropdown-color-select {
+    background: var(--color-green) !important;
+    color: var(--background-color) !important;
+}
+
+.wg_grid {
+    position:relative;
+    background-image: url("soccer_field.png");
+    background-size: 100% 100%;
+}
+
+.wg_grid_player {
+    display: block;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 9px;
+    text-align: center;
+    position: relative;
+    color: #fff;
+    border-radius: 50px;
+    transform: translateY(-50%)translateX(75%);
+}
+
+@media (min-width: 680px) {
+
+    .wg_modal_content {
+        margin: 5% auto;
+        width: 75%;
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .wg_modal_content {
+        margin: 5% auto;
+        width: 50%;
+    }
+
+    .wg_grid_player {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+
+  .wg_hide_xs {
+    display: none;
+  }
+  .wg_grid_player {
+      width: 15px;
+      height: 15px;
+      line-height: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+
+    .wg_hide_xxs {
+      display: none;
+    }
+    .wg_grid_player {
+        width: 10px;
+        height: 10px;
+        line-height: 10px;
+    }
+}
+
+/*
+ * icon-svg
+ */
+ .icon-svg {
+   font-size: 8px;
+ }
+
+ .icon-svg:before {
+   content: ' ';
+   vertical-align: middle;
+   display: inline-block;
+   background-image: url("sprite.svg");
+   background-repeat: no-repeat;
+   background-size: 13em 49.1em;
+ }
+
+ .no-svg .icon-svg:before {
+   background-image: url("sprite.svg");
+ }
+
+ .icon-svg.icon-corner-flag:before {
+   background-position: 0em 0em;
+   width: 1.5em;
+   height: 2em;
+ }
+
+ .icon-svg.icon-in:before {
+   background-position: 0em -2em;
+   width: 0.9em;
+   height: 1.2em;
+ }
+
+ .icon-svg.icon-injury:before {
+   background-position: 0em -3.2em;
+   width: 1.6em;
+   height: 1.6em;
+ }
+
+ .icon-svg.icon-keepers-glove:before {
+   background-position: 0em -4.8em;
+   width: 1.6em;
+   height: 2.2em;
+ }
+
+ .icon-svg.icon-offside-flag:before {
+   background-position: 0em -7em;
+   width: 2.2em;
+   height: 1.8em;
+ }
+
+ .icon-svg.icon-out:before {
+   background-position: 0em -8.8em;
+   width: 0.8em;
+   height: 1.1em;
+ }
+
+ .icon-svg.icon-red-card:before {
+   background-position: 0em -9.9em;
+   width: 1.2em;
+   height: 1.6em;
+ }
+
+ .icon-svg.icon-shirt:before {
+   background-position: 0em -11.5em;
+   width: 3.2em;
+   height: 3.2em;
+ }
+
+ .icon-svg.icon-shirt-alt:before {
+   background-position: 0em -14.7em;
+   width: 3.2em;
+   height: 3.2em;
+ }
+
+ .icon-svg.icon-soccer-ball:before {
+   background-position: 0em -17.9em;
+   width: 1.6em;
+   height: 1.6em;
+ }
+
+ .icon-svg.icon-soccer-ball-missed-penalty:before {
+   background-position: 0em -19.5em;
+   width: 1.8em;
+   height: 1.8em;
+ }
+
+ .icon-svg.icon-soccer-ball-own-goal:before {
+   background-position: 0em -21.3em;
+   width: 1.6em;
+   height: 1.6em;
+ }
+
+ .icon-svg.icon-soccer-ball-penalty:before {
+   background-position: 0em -22.9em;
+   width: 1.8em;
+   height: 1.8em;
+ }
+
+ .icon-svg.icon-soccer-gate:before {
+   background-position: 0em -24.7em;
+   width: 13em;
+   height: 12.2em;
+ }
+
+ .icon-svg.icon-soccer-shoe:before {
+   background-position: 0em -36.9em;
+   width: 2em;
+   height: 1.7em;
+ }
+
+ .icon-svg.icon-soccer-shots:before {
+   background-position: 0em -38.6em;
+   width: 1.4906000000000001em;
+   height: 1.638em;
+ }
+
+ .icon-svg.icon-stopwatch:before {
+   background-position: 0em -40.3em;
+   width: 1.7em;
+   height: 1.9em;
+ }
+
+ .icon-svg.icon-substitution:before {
+   background-position: 0em -42.2em;
+   width: 1.8em;
+   height: 1.7em;
+ }
+
+ .icon-svg.icon-trophy:before {
+   background-position: 0em -43.9em;
+   width: 1.8em;
+   height: 1.9em;
+ }
+
+ .icon-svg.icon-whistle:before {
+   background-position: 0em -45.8em;
+   width: 1.6em;
+   height: 1.7em;
+ }
+
+ .icon-svg.icon-yellow-card:before {
+   background-position: 0em -47.5em;
+   width: 1.2em;
+   height: 1.6em;
+ }

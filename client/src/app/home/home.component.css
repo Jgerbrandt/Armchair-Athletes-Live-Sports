@@ -1,3 +1,10 @@
 .home{
     background: lightgrey;
 }
+
+h1{
+    background-color:lightblue;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding-bottom: 0px;
+    border-bottom: 0px;
+}
