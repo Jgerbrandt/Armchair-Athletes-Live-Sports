@@ -21,8 +21,8 @@ connectToDatabase(ATLAS_URI)
         app.use("/users", userRouter);
 
         // start the Express server
-        app.listen(8080, () => {
-            console.log(`Server running at http://localhost:8-8-...`);
+        app.listen(5200, () => {
+            console.log(`Server running at http://localhost:5200...`);
         });
 
     })
