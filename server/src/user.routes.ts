@@ -34,14 +34,14 @@ userRouter.get("/:id", async (req, res) => {
     }
 });
 
-//Ethan: Making my own user.routes function to get use by username and password :)
-userRouter.get("/:username/:password", async (req, res) => {
+//Ethan: Making my own user.routes function to get use by email and password :)
+userRouter.get("/:email/:password", async (req, res) => {
     try {
-        const username = req?.params?.username;
+        const email = req?.params?.email;
         const password = req?.params?.password;
 
         const query = {
-            username: username,
+            email: email,
             password: password
         };
 
@@ -50,7 +50,7 @@ userRouter.get("/:username/:password", async (req, res) => {
 
         console.log("\nin the custome one, query:");
         // console.log("The user name and password entered are:");
-        // console.log(username);
+        // console.log(email);
         // console.log(password);
         console.log(query);
 
@@ -60,10 +60,10 @@ userRouter.get("/:username/:password", async (req, res) => {
             console.log(user);
             res.status(200).send(user);
         } else {
-            res.status(404).send(`Failed to find an user: USERNAME ${username}, PASSWORD ${password}`);
+            res.status(404).send(`Failed to find an user: EMAIL ${email}, PASSWORD ${password}`);
         }
     } catch (error) {
-        res.status(404).send(`Failed to find an user: USERNAME ${req?.params?.username}, PASSWORD ${req?.params?.password}`);
+        res.status(404).send(`Failed to find an user: EMAIL ${req?.params?.email}, PASSWORD ${req?.params?.password}`);
     }
 });
 

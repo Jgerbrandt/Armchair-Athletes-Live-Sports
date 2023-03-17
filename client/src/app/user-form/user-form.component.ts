@@ -36,6 +36,20 @@ import { User } from '../user';
         </div>
       </div>
 
+      <div class="form-floating mb-3">
+        <input class="form-control" type="text" id="email" formControlName="email" placeholder="email@example.com" required>
+        <label for="email">Email</label>
+      </div>
+
+      <div *ngIf="email.invalid && (email.dirty || email.touched)" class="alert alert-danger">
+        <div *ngIf="email.errors?.['required']">
+          An Email is required.
+        </div>
+        <div *ngIf="email.errors?.['minlength'] || email.errors?.['maxLength'] || email.errors?.['pattern']">
+          Must enter a valid email address.
+        </div>
+      </div>
+
       <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Add</button>
     </form>
   `,
@@ -63,12 +77,15 @@ export class UserFormComponent implements OnInit {
 
   get username() { return this.userForm.get('username')!; }
   get password() { return this.userForm.get('password')!; }
+  get email() { return this.userForm.get('email')!; }
 
   ngOnInit() {
     this.initialState.subscribe(user => {
       this.userForm = this.fb.group({
-        username: [ user.username, [Validators.required] ],
-        password: [ user.password, [ Validators.required, Validators.minLength(4) ] ]
+        username: [user.username, [Validators.required]],
+        password: [user.password, [Validators.required, Validators.minLength(4)]],
+        email: [user.email, [Validators.required, Validators.minLength(6),
+                          Validators.maxLength(127),Validators.pattern("^\\S+@\\S+\\.\\S+$")]]
       });
     });
 

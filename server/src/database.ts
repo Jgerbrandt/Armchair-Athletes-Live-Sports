@@ -12,7 +12,7 @@ export async function connectToDatabase(uri: string) {
     const db = client.db("ArmChairAthletes");
     await applySchemaValidation(db);
 
-    const usersCollection = db.collection<User>("users");
+    const usersCollection = db.collection<User>("users+");
     collections.users = usersCollection;
 }
 
@@ -34,6 +34,13 @@ async function applySchemaValidation(db: mongodb.Db) {
                     bsonType: "string",
                     description: "'password' is required and is a string",
                     minLength: 4
+                },
+                email:  {
+                    description: "Email of the user",
+                    bsonType: "string",
+                    pattern: "^\\S+@\\S+\\.\\S+$",
+                    minLength: 6,
+                    maxLength: 127
                 }
             },
         },
@@ -42,11 +49,11 @@ async function applySchemaValidation(db: mongodb.Db) {
 
     // Try applying the modification to the collection, if the collection doesn't exist, create it 
    await db.command({
-        collMod: "users",
+        collMod: "users+",
         validator: jsonSchema
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === "NamespaceNotFound") {
-            await db.createCollection("users", {validator: jsonSchema});
+            await db.createCollection("users+", {validator: jsonSchema});
         }
     });
 }

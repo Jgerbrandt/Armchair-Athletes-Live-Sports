@@ -7,7 +7,7 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'http://localhost:5200';
+  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
   private users$: Subject<User[]> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
@@ -25,11 +25,8 @@ export class UserService {
   }
 
   checkUser(user: User): Observable<User> {
-    this.refreshUsers();
-    console.log(this.users$.asObservable.toString);
-    console.log("we did in fact make it to this point");
-    
-    return this.httpClient.get<User>(`${this.url}/users/${user.username}/${user.password}`);
+    //console.log("we did in fact make it to this point");
+    return this.httpClient.get<User>(`${this.url}/users/${user.email}/${user.password}`);
   }
 
   getUser(id: string): Observable<User> {
