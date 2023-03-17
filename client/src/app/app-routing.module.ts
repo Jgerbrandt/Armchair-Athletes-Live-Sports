@@ -11,6 +11,7 @@ import {Login} from './navbar/login/login.component'
 import { NHLStandings } from './navbar/standings/nhlstandings.component';
 import { AHLStandings } from './navbar/standings/ahlstandings.component';
 import { NHLGames } from './navbar/nhlgames/nhlgames.component';
+import { AHLGames } from './navbar/ahlgames/ahlgames.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -19,7 +20,7 @@ const routes: Routes = [
   { path: 'home/nhlstandings', component: NHLStandings},
   { path: 'home/ahlstandings', component: AHLStandings},
   { path: 'home/nhlgames', component: NHLGames },
-
+  { path: 'home/ahlgames', component: AHLGames },
   { path: 'home/register', component: AddUserComponent},
   //aaron stuff^^^^^
   { path: 'users', component: UsersListComponent },
