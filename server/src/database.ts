@@ -1,6 +1,6 @@
 import * as mongodb from "mongodb";
 import { User } from "./user";
-
+//test
 export const collections: {
     users?: mongodb.Collection<User>;
 } = {};
