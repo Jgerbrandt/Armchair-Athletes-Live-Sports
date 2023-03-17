@@ -3,34 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { EmployeesListComponent } from './employees-list/employees-list.component';
-import { EmployeeFormComponent } from './employee-form/employee-form.component';
+import { UsersListComponent } from './users-list/users-list.component';
+import { UserFormComponent } from './user-form/user-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { EditEmployeeComponent } from './edit-employee/edit-employee.component'; // <-- add this line
+import { AddUserComponent } from './add-user/add-user.component';
+import { EditUserComponent } from './edit-user/edit-user.component'; // <-- add this line
+
+//aaron stuff VVV
 import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
-import { Register } from './navbar/register/register.component';
-import { NHLStandings } from './navbar/standings/nhlstandings.component';
-import { AHLStandings } from './navbar/standings/ahlstandings.component';
-import { NHLGames } from './navbar/nhlgames/nhlgames.component';
+//import { Register } from './navbar/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeesListComponent,
-    EmployeeFormComponent,
-    AddEmployeeComponent,
-    EditEmployeeComponent,
+    UsersListComponent,
+    UserFormComponent,
+    AddUserComponent,
+    EditUserComponent,
     Home,
     Navbar,
     Login,
-    Register,
-    NHLStandings,
-    AHLStandings,
-    NHLGames
+    //Register
   ],
   imports: [
     BrowserModule,
