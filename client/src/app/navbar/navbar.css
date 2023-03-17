@@ -4,12 +4,11 @@
 
 .dropbtn{
 	text-align: center;
-	display: inline;
  }
  
  .drop-content{
     display: none;
-    position: fixed;
+    position: absolute;
     text-align: left;
     z-index: 1;
     border: 2px;
