@@ -6,6 +6,7 @@ export const userRouter = express.Router();
 userRouter.use(express.json());
 
 userRouter.get("/", async (_req, res) => {
+    console.log("a user is requesting all users");
     try {
         const user = await collections.users.find({}).toArray();
         res.status(200).send(user);
@@ -34,9 +35,38 @@ userRouter.get("/:id", async (req, res) => {
     }
 });
 
+userRouter.get("/:email", async (req, res) => {
+    try {
+        console.log("in just email");
+
+        const email = req?.params?.email;
+
+        const query = {
+            email: email
+        };
+
+        const user = await collections
+        .users.findOne(query);
+
+        console.log(query);
+        if (user) {
+            console.log("found user:");
+            console.log(user);
+            res.status(200).send(user);
+        } else {
+            res.status(404).send(`Failed to find an user: EMAIL ${email}`);
+        }
+    } catch (error) {
+        res.status(404).send(`Failed to find an user: EMAIL ${req?.params?.email}`);
+    }
+});
+
 //Ethan: Making my own user.routes function to get use by email and password :)
 userRouter.get("/:email/:password", async (req, res) => {
     try {
+        console.log("in email and pass");
+
+
         const email = req?.params?.email;
         const password = req?.params?.password;
 
@@ -48,7 +78,7 @@ userRouter.get("/:email/:password", async (req, res) => {
         const user = await collections
         .users.findOne(query);
 
-        console.log("\nin the custome one, query:");
+        //console.log("\nin the custome one, query:");
         // console.log("The user name and password entered are:");
         // console.log(email);
         // console.log(password);
