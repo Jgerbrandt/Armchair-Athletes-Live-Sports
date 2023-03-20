@@ -6,6 +6,7 @@ import { User } from 'src/app/user';
 @Component({
   selector: 'login-form',
   template: `
+    <div style="">
     <form class="user-form" autocomplete="off" [formGroup]="userForm" (ngSubmit)="submitForm()">
       <div class="form-floating mb-3">
         <input class="form-control" type="text" id="email" formControlName="email" placeholder="email@example.com" required>
@@ -19,7 +20,7 @@ import { User } from 'src/app/user';
       </div>
 
       <div class="form-floating mb-3">
-        <input class="form-control" type="text" formControlName="password" placeholder="Password" required>
+        <input class="form-control" type="password" formControlName="password" placeholder="Password" required>
         <label for="password">Password</label>
       </div>
 
@@ -29,8 +30,9 @@ import { User } from 'src/app/user';
         </div>
       </div>
 
-      <button class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Login</button>
+      <button style="position:center;"class="btn btn-primary" type="submit" [disabled]="userForm.invalid">Login</button>
     </form>
+    </div>
   `,
   styles: [
     `.user-form {
