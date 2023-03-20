@@ -6,7 +6,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'app-add-user',
   template: `
-    <h2 class="text-center m-5">Add a New User</h2>
+    <h2 class="text-center m-5">Register</h2>
     <app-user-form (formSubmitted)="addUser($event)"></app-user-form>
   `
 })

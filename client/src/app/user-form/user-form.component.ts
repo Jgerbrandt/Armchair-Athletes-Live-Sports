@@ -22,7 +22,7 @@ import { User } from '../user';
       </div>
 
       <div class="form-floating mb-3">
-        <input class="form-control" type="text" formControlName="password" placeholder="Password" required>
+        <input class="form-control" type="password" formControlName="password" placeholder="Password" required>
         <label for="password">Password</label>
       </div>
 

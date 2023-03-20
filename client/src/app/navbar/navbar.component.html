@@ -1,9 +1,17 @@
 <div class="navbar">
-    This is a navbar
+    <div class="logo">
+    <img src="../../assets/media/logo.png"/>
+    </div>
+    <div class="mainButtons">
     <button [routerLink]="['login/']">Login</button>
+    </div>
+    <div class="mainButtons">
     <button [routerLink]="['register/']">Register</button>
+    </div>
     <div class="drop">
+        <div class="mainButtons">
         <button class="dropbtn">View Standings</button>
+        </div>
             <div class="drop-content">
                 <button [routerLink]="['nhlstandings/']" class="dropitem">NHL Standings</button>
                 <button [routerLink]="['ahlstandings/']" class="dropitem">AHL Standings</button>
@@ -11,7 +19,9 @@
     </div>
 
         <div class="drop">
+            <div class="mainButtons">
             <button class="dropbtn">View Games</button>
+        </div>
                 <div class="drop-content">
                     <button [routerLink]="['nhlgames/']" class="dropitem">NHL Games</button>
                     <button [routerLink]="['ahlgames/']" class="dropitem">AHL Games</button>

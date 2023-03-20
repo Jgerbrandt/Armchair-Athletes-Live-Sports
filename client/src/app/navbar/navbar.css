@@ -1,10 +1,43 @@
 .navbar{
-    background-color: lightblue;
+    background: rgb(0,237,255);
+background: linear-gradient(0deg, rgba(0,237,255,0.9977240896358543) 10%, rgba(33,0,155,1) 100%);
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display:flex;
+    flex-direction:row;
+    border:solid;
+    border-width: 3px;
+    border-color:rgb(30, 30, 30);
+    
+    
+
+}
+
+.mainButtons:hover button{
+    color:white
+}
+.mainButtons button{
+    border: none;
+    border-width: 0px;
+
+    border-color: black;
+    border-style:solid;
+    background-color:transparent;
+    font-size:1.5rem;
+    font-weight: bold;
+    color: black;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+.navbar img{
+    height: 5rem;
+    width: 5rem;
 }
 
 .dropbtn{
 	text-align: center;
  }
+ 
  
  .drop-content{
     display: none;
@@ -12,6 +45,17 @@
     text-align: left;
     z-index: 1;
     border: 2px;
+}
+
+.drop-content button{
+    border-width: 2px;
+    border-color: black;
+    border: solid;
+    display:flex;
+    flex-direction: column;
+    font-family:Arial, Helvetica, sans-serif;
+
+
 }
 
  .drop{
