@@ -1,8 +1,10 @@
 import * as mongodb from "mongodb";
 import { User } from "./user";
+import { Team } from "./team";
 //test
 export const collections: {
     users?: mongodb.Collection<User>;
+    teams?: mongodb.Collection<Team>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -10,15 +12,18 @@ export async function connectToDatabase(uri: string) {
     await client.connect();
 
     const db = client.db("ArmChairAthletes");
-    await applySchemaValidation(db);
+    await applySchemaValidationUsers(db);
+    await applySchemaValidationTeams(db);
 
     const usersCollection = db.collection<User>("users+");
     collections.users = usersCollection;
+    const teamsCollection = db.collection<Team>("teams");
+    collections.teams = teamsCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
 // For more information about schema validation, see this blog series: https://www.mongodb.com/blog/post/json-schema-validation--locking-down-your-model-the-smart-way
-async function applySchemaValidation(db: mongodb.Db) {
+async function applySchemaValidationUsers(db: mongodb.Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
@@ -54,6 +59,40 @@ async function applySchemaValidation(db: mongodb.Db) {
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === "NamespaceNotFound") {
             await db.createCollection("users+", {validator: jsonSchema});
+        }
+    });
+}
+
+
+async function applySchemaValidationTeams(db: mongodb.Db) {
+    const jsonSchema = {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["sport", "teamName"],
+            additionalProperties: false,
+            properties: {
+                _id: {},
+                sport: {
+                    bsonType: "string",
+                    description: "'sport' is required and is a string",
+                },
+                teamName: {
+                    bsonType: "string",
+                    description: "'teamName' is required and is a string",
+                    minLength: 4
+                }
+            },
+        },
+    };
+    
+
+    // Try applying the modification to the collection, if the collection doesn't exist, create it 
+   await db.command({
+        collMod: "teams",
+        validator: jsonSchema
+    }).catch(async (error: mongodb.MongoServerError) => {
+        if (error.codeName === "NamespaceNotFound") {
+            await db.createCollection("teams", {validator: jsonSchema});
         }
     });
 }

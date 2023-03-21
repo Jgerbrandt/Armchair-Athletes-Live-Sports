@@ -6,12 +6,14 @@ import { EditUserComponent } from './edit-user/edit-user.component'; // <-- add 
 
 //aaron stuff VvVVVV
 import { Home } from './home/home.component';
-import {Login} from './navbar/login/login.component'
+import { Login } from './navbar/login/login.component'
 //import { Register } from './navbar/register/register.component';
 import { NHLStandings } from './navbar/standings/nhlstandings.component';
 import { AHLStandings } from './navbar/standings/ahlstandings.component';
 import { NHLGames } from './navbar/nhlgames/nhlgames.component';
 import { AHLGames } from './navbar/ahlgames/ahlgames.component';
+//Favorite Teams VVVVVV
+import { FollowTeam } from './navbar/followteam/follow-team.component'
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,7 +24,8 @@ const routes: Routes = [
   { path: 'home/nhlgames', component: NHLGames },
   { path: 'home/ahlgames', component: AHLGames },
   { path: 'home/register', component: AddUserComponent},
-  //aaron stuff^^^^^
+  { path: 'home/followteam', component: FollowTeam},
+  //OLD stuffVVVVVV
   { path: 'users', component: UsersListComponent },
   { path: 'users/new', component: AddUserComponent }, // <-- add this line
   { path: 'users/edit/:id', component: EditUserComponent }]; // <-- add this line
