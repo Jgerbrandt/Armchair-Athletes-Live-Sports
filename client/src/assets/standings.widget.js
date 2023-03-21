@@ -119,7 +119,7 @@ async function hockey_standings(t, e, s, n, a, l, o=!1) {
             }
         n += "\n            </table>\n        ",
         s.classList.remove("wg_loader"),
-        s.innerHTML = n
+        s.innerHTML = n //***********************Need to put n into file************************ */
     } catch (t) {
         "true" === a && console.log(t)
     }
