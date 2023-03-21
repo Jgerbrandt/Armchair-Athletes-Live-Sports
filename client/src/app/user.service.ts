@@ -30,10 +30,10 @@ export class UserService {
     console.log(user.username);
     if(user.username == null || user.username == undefined){
       console.log("should be in the login page\n");
-      return this.httpClient.get<User>(`${this.url}/users/${user.email}`);
+      return this.httpClient.get<User>(`${this.url}/users/${user.email}/${user.password}`);
     }else{
       console.log("should be in the register page\n");
-      return this.httpClient.get<User>(`${this.url}/users/${user.email}/${user.password}`);
+      return this.httpClient.get<User>(`${this.url}/users/${user.email}/a1`);//a1 is the search code for email no password
     }
   }
 
@@ -42,6 +42,7 @@ export class UserService {
   }
 
   createUser(user: User): Observable<string> {
+    console.log("We are now creating the user\n");
     let httpReplyThing = this.httpClient.post(`${this.url}/users`, user, { responseType: 'text' });
     return httpReplyThing;
   }
