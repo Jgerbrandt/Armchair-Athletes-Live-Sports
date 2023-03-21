@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { LoginService} from '../login-service'
 
 @Component({
   selector: 'app-add-user',
@@ -14,13 +15,15 @@ import { UserService } from '../user.service';
 export class AddUserComponent {
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private loginService: LoginService
   ) { }
 
   addUser(user: User) {
     this.userService.createUser(user)
       .subscribe({
         next: () => {
+          this.loginService.login(user);
           this.router.navigate(['../home']);
         },
         error: (error) => {

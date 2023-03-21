@@ -3,6 +3,7 @@ import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { User } from 'src/app/user';
 import { UserService } from 'src/app/user.service';
+import { LoginService } from 'src/app/login-service';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +15,18 @@ import { UserService } from 'src/app/user.service';
 export class Login{
   constructor(
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
+    private loginService: LoginService
   ) { }
 
   checkUser(user: User) {
     this.userService.checkUser(user)
       .subscribe({
-        next: () => {
+        next: (user) => {
           //todo: here we need to store user somewhere maybe with cookies or something
-          alert("Welcome back");
+          //alert("Welcome back " + user.username);
+          this.loginService.login(user);
+          
           this.router.navigate(['../home']);
         },
         error: (error) => {
