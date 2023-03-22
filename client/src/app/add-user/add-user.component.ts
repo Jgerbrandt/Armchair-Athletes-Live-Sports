@@ -20,16 +20,30 @@ export class AddUserComponent {
   ) { }
 
   addUser(user: User) {
-    this.userService.createUser(user)
-      .subscribe({
-        next: () => {
-          this.loginService.login(user);
-          this.router.navigate(['../home']);
-        },
-        error: (error) => {
-          alert("Failed to create user");
-          console.error(error);
-        }
-      });
+    this.userService.checkUser(user)
+    .subscribe({
+      next: () => {
+        //todo: here we need to store user somewhere maybe with cookies or something
+        
+        alert("This email already has an account associated with it.");
+      },
+      error: (error) => {
+        this.userService.createUser(user)
+        .subscribe({
+          next: () => {
+            this.loginService.login(user);
+            this.router.navigate(['../home']);
+          },
+          error: (error) => {
+            alert("Failed to create user");
+            console.error(error);
+          }
+        });
+      }
+    });
+    
+
+    
+      
   }
 }

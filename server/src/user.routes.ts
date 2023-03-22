@@ -7,6 +7,7 @@ export const userRouter = express.Router();
 userRouter.use(express.json());
 
 userRouter.get("/", async (_req, res) => {
+    console.log("a user is requesting all users");
     try {
         const user = await collections.users.find({}).toArray();
         res.status(200).send(user);
@@ -38,30 +39,58 @@ userRouter.get("/:id", async (req, res) => {
 //Ethan: Making my own user.routes function to get use by email and password :)
 userRouter.get("/:email/:password", async (req, res) => {
     try {
+        console.log("in email and pass");
+
+
         const email = req?.params?.email;
         const password = req?.params?.password;
 
-        const query = {
-            email: email,
-            password: password
-        };
+        //here password is used a default search code to search by email alone
+        if(password == "a1"){
 
-        const user = await collections
-        .users.findOne(query);
+            console.log(`in the login-check-user-get the code is ${password}`);
 
-        console.log("\nin the custome one, query:");
-        // console.log("The user name and password entered are:");
-        // console.log(email);
-        // console.log(password);
-        console.log(query);
+            const query = {
+                email: email
+            };
+            const user = await collections
+            .users.findOne(query);
+
+            console.log(query);
+            if (user) {
+                console.log("found user:");
+                console.log(user);
+                res.status(200).send(user);
+            } else {
+                res.status(404).send(`Failed to find an user: EMAIL ${email}`);
+            }
+
+        } else { // no search code, search by email and pass
+
+            console.log(`in the register-check-user-get the code is ${password}`);
+
+            const query = {
+                email: email,
+                password: password
+            };
+
+            const user = await collections
+            .users.findOne(query);
+
+            //console.log("\nin the custome one, query:");
+            // console.log("The user name and password entered are:");
+            // console.log(email);
+            // console.log(password);
+            console.log(query);
 
 
-        if (user) {
-            console.log("found user:");
-            console.log(user);
-            res.status(200).send(user);
-        } else {
-            res.status(404).send(`Failed to find an user: EMAIL ${email}, PASSWORD ${password}`);
+            if (user) {
+                console.log("found user:");
+                console.log(user);
+                res.status(200).send(user);
+            } else {
+                res.status(404).send(`Failed to find an user: EMAIL ${email}, PASSWORD ${password}`);
+            }
         }
     } catch (error) {
         res.status(404).send(`Failed to find an user: EMAIL ${req?.params?.email}, PASSWORD ${req?.params?.password}`);

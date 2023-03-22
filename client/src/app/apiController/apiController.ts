@@ -1,34 +1,30 @@
-import { Component, OnInit , Input} from '@angular/core';
-import { User } from '../user';
-import { LoginService } from '../login-service';
-import { apiController } from '../apiController/apiController';
-import { TeamData } from '../apiController/teamData';
-import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { TeamData } from "./teamData";
 
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html', 
-  styleUrls: ['./home.component.css']
-})
-export class Home implements OnInit{
-  @Input() user: User;
-  favTeam: number;
-  season: number = 2022;
-  league: number = 57;
-  favTeamData: TeamData;
-  //api: apiController;
 
-  constructor(
-    private loginService: LoginService,
-    private api: apiController
-    ){
-    this.user = this.loginService.getUser();
-    this.favTeam = 675;
-    //this.api = new apiController();
+@Injectable({providedIn:'root'})
+export class apiController{
+private myHeaders;
+private requestOptions: {};
+private returnData: TeamData
+// myHeaders.append("x-rapidapi-key", "XxXxXxXxXxXxXxXxXxXxXxXx");
+// myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
 
-    this.favTeamData = {
-        get: "string",
+
+constructor(
+  private httpClient: HttpClient,
+){
+  this.myHeaders = new Headers();
+  this.myHeaders.append("x-rapidapi-key", "8bab09f0208287f1fe343c5e65a9994f");
+  this.myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
+  this.requestOptions = {
+    method: 'GET',
+    headers: this.myHeaders,
+    redirect: 'follow'
+  }
+  this.returnData = {get: "string",
         parameter: {
           team: "string",
           league: "string",
@@ -117,29 +113,39 @@ export class Home implements OnInit{
                     }
                 }
             }
-  }
+          }
 }
 
-  ngOnInit(){
-    this.user = this.loginService.getUser();
-    this.loginService.loginEvent.subscribe();
-    //Logic here to set users favorite team
-    if(this.user._id != '-1'){
-      let temp: Promise<TeamData>;
-    temp = this.api.makeCall(this.league, this.season, this.favTeam);
-    temp.then((data) => {this.favTeamData = data})
+  async makeCall(league: number, season: number, team: number){
+    // let returnObj: TeamData;
+    // returnObj = {};
+
+    // let favTeamData$: Observable<TeamData> = new Observable();
+    // favTeamData$ = this.httpClient.get<TeamData>("https://v1.hockey.api-sports.io/" + endpoint, this.requestOptions);
+
+    // favTeamData$.forEach(value => {value.errors.forEach(err => alert(err))});
+    // favTeamData$.forEach(value => {alert(value.results)});
+    // return favTeamData$;
 
 
-
-    //alert("Home: "+ teamData);
-      //this.favTeamData = this.api.makeCall("teams?id="+this.favTeam);
-    //alert(this.api.makeCall("teams?id="+this.favTeam));
-     // alert(teamData);
-    }
+  return await fetch("https://v1.hockey.api-sports.io/teams/statistics?season="+season+"&team="+team+"&league="+league, this.requestOptions)
+  .then(response => response.text())
+  .then(result => {this.returnData = JSON.parse(result)})
+  .then(parsed => {return this.returnData;})
+  .catch(error => {alert(error); return this.returnData;});
+  //return this.returnData;
   }
+  
+  
+  
 
-  // updateText(){
-  //   let widget = document.getElementById("wg-api-hockey-standings");
-  //   text?.innerHTML 
-  // }
+
+
+
 }
+
+
+// fetch("https://v1.hockey.api-sports.io/{endpoint}", requestOptions)
+//   .then(response => response.text())
+//   .then(result => console.log(result))
+//   .catch(error => console.log('error', error));

@@ -8,11 +8,14 @@ import { User } from './user';
 })
 export class UserService {
   private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
+  //private url = 'http://localhost:5200';
+  //'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app'
   private users$: Subject<User[]> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
   private refreshUsers() {
+    console.log("should not be able to get here\n");
     this.httpClient.get<User[]>(`${this.url}/users`)
       .subscribe(users => {
         this.users$.next(users);
@@ -25,8 +28,14 @@ export class UserService {
   }
 
   checkUser(user: User): Observable<User> {
-    //console.log("we did in fact make it to this point");
-    return this.httpClient.get<User>(`${this.url}/users/${user.email}/${user.password}`);
+    console.log(user.username);
+    if(user.username == null || user.username == undefined){
+      console.log("should be in the login page\n");
+      return this.httpClient.get<User>(`${this.url}/users/${user.email}/${user.password}`);
+    }else{
+      console.log("should be in the register page\n");
+      return this.httpClient.get<User>(`${this.url}/users/${user.email}/a1`);//a1 is the search code for email no password
+    }
   }
 
   getUser(id: string): Observable<User> {
@@ -34,6 +43,7 @@ export class UserService {
   }
 
   createUser(user: User): Observable<string> {
+    console.log("We are now creating the user\n");
     let httpReplyThing = this.httpClient.post(`${this.url}/users`, user, { responseType: 'text' });
     return httpReplyThing;
   }
