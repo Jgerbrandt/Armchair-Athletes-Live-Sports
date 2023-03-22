@@ -137,7 +137,7 @@ async function hockey_games(e, t, s, a, i, o, n, d, l) {
                     if (v !== i.league.id) {
                         let e = `<span data-sport="hockey" data-league="${i.league.id}" data-season="${i.league.season}" class="wb_header_link wg_load_standings">Standings</span>`;
                         "false" === l && (e = ""),
-                        _ += `\n                            <tr id="hockey-league-${i.league.id}">\n                                <td class="wg_header" colspan="9"> ${i.country.name}: ${i.league.name} <span data-id="hockey-league-${i.league.id}" class="wg_arrow wg_arrow_up">&#10095;</span> ${e}</td>\n                            </tr>\n                        `,
+                        _ += `\n                            <tr id="hockey-league-${i.league.id}">\n                                <td class="wg_league" colspan="9"> ${i.country.name}: ${i.league.name} <span data-id="hockey-league-${i.league.id}" class="wg_arrow wg_arrow_up">&#10095;</span> ${e}</td>\n                            </tr>\n                        `,
                         v = i.league.id
                     }
                     $ && k !== _date(i.timestamp) && (_ += `\n                                <tr id="hockey-date-${_date(i.timestamp)}">\n                                    <td class="wg_header" colspan="9">${_date(i.timestamp)} <span data-id="date-${_date(i.timestamp)}" class="wg_arrow wg_arrow_up">&#10095;</span></td>\n                                </tr>\n                            `,
