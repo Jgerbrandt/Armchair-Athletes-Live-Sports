@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../user';
 import { UserService } from '../user.service';
-import { LoginService} from '../login-service'
+import { LoginService } from '../login-service'
 
 @Component({
   selector: 'app-add-user',

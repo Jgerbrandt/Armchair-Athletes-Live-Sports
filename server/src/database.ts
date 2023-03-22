@@ -1,10 +1,10 @@
 import * as mongodb from "mongodb";
 import { User } from "./user";
-import { Team } from "./team";
+import { ApiData } from "./apiData";
 //test
 export const collections: {
     users?: mongodb.Collection<User>;
-    teams?: mongodb.Collection<Team>;
+    apiData?: mongodb.Collection<ApiData>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -13,12 +13,12 @@ export async function connectToDatabase(uri: string) {
 
     const db = client.db("ArmChairAthletes");
     await applySchemaValidationUsers(db);
-    await applySchemaValidationTeams(db);
+    await applySchemaValidationApiData(db);
 
     const usersCollection = db.collection<User>("users+");
     collections.users = usersCollection;
-    const teamsCollection = db.collection<Team>("teams");
-    collections.teams = teamsCollection;
+    const apidDataCollection = db.collection<ApiData>("apiData");
+    collections.apiData = apidDataCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
@@ -64,22 +64,25 @@ async function applySchemaValidationUsers(db: mongodb.Db) {
 }
 
 
-async function applySchemaValidationTeams(db: mongodb.Db) {
+async function applySchemaValidationApiData(db: mongodb.Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
-            required: ["sport", "teamName"],
+            required: ["ts", "flag", "json"],
             additionalProperties: false,
             properties: {
                 _id: {},
-                sport: {
+                ts: {
                     bsonType: "string",
-                    description: "'sport' is required and is a string",
+                    description: "'ts' is required and is a string"
                 },
-                teamName: {
+                flag: {
                     bsonType: "string",
-                    description: "'teamName' is required and is a string",
-                    minLength: 4
+                    description: "'flag' is required and is a string"
+                },
+                json: {
+                    bsonType: "string",
+                    description: "'json' is required and is a string"
                 }
             },
         },
@@ -88,11 +91,11 @@ async function applySchemaValidationTeams(db: mongodb.Db) {
 
     // Try applying the modification to the collection, if the collection doesn't exist, create it 
    await db.command({
-        collMod: "teams",
+        collMod: "apiData",
         validator: jsonSchema
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === "NamespaceNotFound") {
-            await db.createCollection("teams", {validator: jsonSchema});
+            await db.createCollection("apiData", {validator: jsonSchema});
         }
     });
 }

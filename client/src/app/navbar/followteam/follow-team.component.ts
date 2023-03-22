@@ -1,40 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Team } from 'src/app/team';
-import { TeamService } from 'src/app/team.service';
+import { ApiData } from 'src/app/apiData';
+import { User } from 'src/app/user';
+import { ApiDataService } from 'src/app/apiData.service';
+import { LoginService } from 'src/app/login-service';
 
 @Component({
   selector: 'app-follow-teams-list',
   templateUrl: './follow-team.component.html'
 })
 export class FollowTeam implements OnInit {
-  teams$: Observable<Team[]> = new Observable();
+  @Input() user: User;
+  teams$: Observable<ApiData[]> = new Observable();
 
-  constructor(private teamsService: TeamService) { }
+  constructor(private loginService: LoginService, 
+    private apiDataService: ApiDataService) {
+    this.user = this.loginService.getUser();
+  }
 
   ngOnInit(): void {
     this.fetchTeams();
   }
 
   followTeam(id: string): void {
-    this.teamsService.followTeam(id).subscribe({
-      next: () => this.fetchTeams()
-    });
+
+    // this.apiDataService.followTeam(id).subscribe({
+    //   next: () => this.fetchTeams()
+    // });
   }
 
   private fetchTeams(): void {
-    this.teams$ = this.teamsService.getTeams();
-  }
-
-  addTeam(team: Team) {
-    this.teamsService.createTeam(team)
-    .subscribe({
-      next: () => {
-        alert("goodTeam");
-      },
-      error: (error) => {
-        alert("badTeam");
-      }
-    }); 
+    this.teams$ = this.apiDataService.getTeams();
   }
 }

@@ -18,8 +18,6 @@ import { LoginFormComponent } from './navbar/login/login-form.components';
 //Favorite team VVVVV
 import { FollowTeam } from './navbar/followteam/follow-team.component';
 
-import { TeamFormComponent } from './navbar/followteam/follow-team-form.component';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,8 +29,7 @@ import { TeamFormComponent } from './navbar/followteam/follow-team-form.componen
     Navbar,
     Login,
     LoginFormComponent,
-    FollowTeam,
-    TeamFormComponent
+    FollowTeam
   ],
   imports: [
     BrowserModule,

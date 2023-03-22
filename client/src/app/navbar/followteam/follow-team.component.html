@@ -10,14 +10,12 @@
     </thead>
 
     <tbody>
-        <tr *ngFor="let team of teams$ | async">
+        <!-- <tr *ngFor="let team of teams$ | async">
             <td>{{team.sport}}</td>
             <td>{{team.teamName}}</td>
             <td>
                 <button class="btn btn-primary mt-3" (click)="followTeam(team._id || '')">Follow</button>
             </td>
-        </tr>
+        </tr> -->
     </tbody>
 </table>
-
-<app-team-form (formSubmitted)="addTeam($event)"></app-team-form>
