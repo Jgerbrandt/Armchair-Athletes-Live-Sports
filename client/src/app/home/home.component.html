@@ -1,6 +1,36 @@
     <div>
         <app-navbar></app-navbar>
         <div class="home">
+            <div>
+            <h1>
+            Welcome {{user.username}}
+            </h1>
+        </div>
+            <div *ngIf="user._id!='-1'">
+                <div *ngIf="favTeamData.results">
+                <div *ngIf="favTeamData.results>0">
+                <div *ngIf="favTeamData.response">
+                    <div class="data-column">
+                    <h2> Favorite Team</h2>
+                    <p>{{favTeamData.response.team.name}}</p>
+                    <div class="data-rows">
+                        <div>
+                    <img src="{{favTeamData.response.team.logo}}">
+                    </div>
+                    <div>
+                    <p>Games Played: {{favTeamData.response.games.played.all}}</p>
+                    <p>Win Rate: {{favTeamData.response.games.wins.all.percentage}}</p>
+                    <p>Total Goals: {{favTeamData.response.goals.for.total.all}}</p>
+                    <p>Average Goals: {{favTeamData.response.goals.for.average.all}}</p>
+                    </div>
+                
+
+
+                </div>
+                </div>
+                </div>
+                
+            </div>
         </div>
     </div>
 

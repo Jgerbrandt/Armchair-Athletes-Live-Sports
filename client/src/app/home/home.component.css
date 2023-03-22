@@ -1,3 +1,22 @@
 .home{
     background: lightgrey;
+    display:flex;
+    flex-direction:column;
+    text-align:center;
+    justify-content:center;
+}
+.data-column{
+    display:flex;
+    flex-direction:column;
+}
+
+.data-rows{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+}
+
+.data img{
+    height:5rem;
+    width:5rem;
 }
