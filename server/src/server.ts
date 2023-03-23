@@ -5,6 +5,7 @@ import { connectToDatabase } from "./database";
 import { userRouter } from "./user.routes";
 import { apiDataRouter } from "./apiData.routes";
 import { teamRouter } from "./teams.routes";
+import { collections } from './database' ;
 
 // Load environment variables from the .env file, where the ATLAS_URI is configured
 dotenv.config();
@@ -24,6 +25,17 @@ connectToDatabase(ATLAS_URI)
         app.use("/apiData", apiDataRouter);
         app.use("/team", teamRouter);
 
+        app.get('/teams', (req, res) => {
+            collections.team.find().toArray()
+              .then((teams) => {
+                res.json(teams);
+              })
+              .catch((err) => {
+                console.error(err);
+                res.sendStatus(500);
+              });
+        });
+          
         // start the Express server
         app.listen(5200, () => {
             console.log(`Server running at http://localhost:5200...`);

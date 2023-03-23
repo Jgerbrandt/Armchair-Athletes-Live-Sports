@@ -1,21 +1,24 @@
-<h2 class="text-center m-5">Team List</h2>
+<h2 class="text-center m-5">Teams List</h2>
 
-<table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th>Sport</th>
-            <th>Team Name</th>
-            <th>Follow</th>
-        </tr>
-    </thead>
+    <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Sport</th>
+                <th>Team Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
 
-    <tbody>
-        <!-- <tr *ngFor="let team of teams$ | async">
-            <td>{{team.sport}}</td>
-            <td>{{team.teamName}}</td>
-            <td>
-                <button class="btn btn-primary mt-3" (click)="followTeam(team._id || '')">Follow</button>
-            </td>
-        </tr> -->
-    </tbody>
-</table>
+        <tbody>
+            <tr *ngFor="let user of teams$ | async">
+                <td>NHL</td>
+                <td>{{user.team_id}}</td>
+                <td>
+                    <button class="btn btn-primary me-1" (click)="addTeam(user || '')">Follow</button>
+                    <button class="btn btn-danger" (click)="deleteUser(user._id || user.user_id || '')">Unfollow</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary mt-3" [routerLink]="['/home']">Return Home</button>
