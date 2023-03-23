@@ -24,6 +24,8 @@ export class FollowTeam implements OnInit {
   }
 
   followTeam(id: string): void {
+    
+
 
     // this.apiDataService.followTeam(id).subscribe({
     //   next: () => this.fetchTeams()

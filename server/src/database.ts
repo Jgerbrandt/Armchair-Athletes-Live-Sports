@@ -73,8 +73,8 @@ async function applySchemaValidationApiData(db: mongodb.Db) {
             properties: {
                 _id: {},
                 ts: {
-                    bsonType: "string",
-                    description: "'ts' is required and is a string"
+                    bsonType: "number",
+                    description: "'ts' is required and is a number"
                 },
                 flag: {
                     bsonType: "string",

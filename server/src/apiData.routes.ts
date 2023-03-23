@@ -80,6 +80,8 @@ apiDataRouter.post("/", async (req, res) => {
         apiData = req.body;
         apiData.ts = Date.now();
 
+        console.log(apiData);
+
         const result = await collections.apiData.insertOne(apiData);
         if (result.acknowledged) {
             res.status(201).send(`Created a new apiData: ID ${result.insertedId}.`);
