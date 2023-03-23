@@ -18,43 +18,61 @@ export class ApiDataService {
 
   constructor(private httpClient: HttpClient, private api: apiController) { }
 
-  private refreshTeams() {
-    console.log("in refresh teams");
-    let temp: string;
-    let apiData: ApiData;
-    let httpResponse = this.httpClient.get<ApiData>(`${this.url}/apiData/teams`);
-    httpResponse.subscribe({
-      next: (apiData) => {
-        this.teamsJson$ = apiData;
-      },
-      error: (error) => {
-        temp = "teams*";//add flag to text being sent
+  async wrapingRefreshTeamsSubscription(): Promise<ApiData>{
+    return new Promise((resolve, reject) => {
 
-        this.api.makeCallAllTeams(this.league, this.season)
-        .then(res => {
-          apiData = {flag: "teams", json: res};//dont need team stamp for teams
-          this.teamsJson$ = apiData;
-        })
-        .then(placeHolder => {
-          console.log("We are now creating the teams apiData\n");
-          this.httpClient.post(`${this.url}/apiData`, apiData, { responseType: 'text' })
-          .subscribe({
-            next: () => {
-              console.log("ApiData was successfully created");
-            },
-            error: (error) => {
-              alert("Failed to create ApiData");
-              console.error(error);
-            }
+      let apiData: ApiData;
+      //Here we do HTTP GET call to see if the teams are already stored
+      let httpResponse = this.httpClient.get<ApiData>(`${this.url}/apiData/teams`);
+      httpResponse.subscribe({
+        //If we were able to find it we just return the data
+        next: (apiData) => {
+          console.log(`GOOD: Found API call for teams in DB`);
+          resolve(apiData);
+        },
+        //If we did not find the call
+        error: (error) => {
+          //first make a call to the API to get the teams
+          this.api.makeCallAllTeams(this.league, this.season)
+          .then(res => {
+            //once we have to teams from the api (json format)
+            //we add the flag for data type (teams).
+            //We dont add time stamp right now the db will do that 
+            apiData = {flag: "teams", json: res};
+            //also store the object to be used
+          })
+          .then(placeHolder => {
+            console.log("Attempting to store ApiData for teams\n");
+            //Then we send the object to be created in the database 
+            this.httpClient.post(`${this.url}/apiData`, apiData, { responseType: 'text' })
+            .subscribe({
+              next: () => {
+                console.log("ApiData for teams was successfully store");
+              },
+              error: (error) => {
+                alert("Failed to create ApiData for teams");
+                console.error(error);
+              }
+            });
+            resolve(apiData);
           });
-        });
-      }
+        }
+      });
+
     });
   }
 
-  getTeams(): ApiData {
-    this.refreshTeams();
-    return this.teamsJson$;
+
+  private async refreshTeams(): Promise<ApiData> {
+    console.log("In refresh teams (ApiData)");
+    let teamsApiData: ApiData = {flag: "", json: ""};
+    teamsApiData = await this.wrapingRefreshTeamsSubscription();
+    return teamsApiData;
+  }
+
+  async getTeams(): Promise<ApiData> {
+    console.log(`In get teams (ApiData)`);
+    return await this.refreshTeams();
   }
 
   getTeam(id: string): Observable<ApiData> {

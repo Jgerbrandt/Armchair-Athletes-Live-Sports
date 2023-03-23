@@ -4,6 +4,7 @@ import { ApiData } from 'src/app/apiData';
 import { User } from 'src/app/user';
 import { ApiDataService } from 'src/app/apiData.service';
 import { LoginService } from 'src/app/login-service';
+import { AllTeamData,OneTeamData } from './allTeamData';
 
 @Component({
   selector: 'app-follow-teams-list',
@@ -12,27 +13,24 @@ import { LoginService } from 'src/app/login-service';
 export class FollowTeam implements OnInit {
   @Input() user: User;
   teams$: ApiData;
+  teamsParsed$: OneTeamData[];
 
   constructor(private loginService: LoginService, 
     private apiDataService: ApiDataService) {
     this.user = this.loginService.getUser();
   }
 
-  ngOnInit(): void {
-    console.log("at init");
-    this.fetchTeams();
+  async ngOnInit(): Promise<void> {
+    console.log("At init for follow team");
+    this.teams$ = await this.fetchTeams();
+    this.teamsParsed$ = JSON.parse(this.teams$.json).response;
   }
 
   followTeam(id: string): void {
-    
-
-
-    // this.apiDataService.followTeam(id).subscribe({
-    //   next: () => this.fetchTeams()
-    // });
+    console.log(`team idea selected is ${id}`);
   }
 
-  private fetchTeams(): void {
-    this.teams$ = this.apiDataService.getTeams();
+  private async fetchTeams(): Promise<ApiData> {
+    return await this.apiDataService.getTeams();
   }
 }
