@@ -8,9 +8,8 @@
         </div>
             <div *ngIf="user._id!='-1'">
                     <div class="data-column">
-                        <h2> Favorite Team</h2>
-                        <h3>{{favTeamData.response.team.name}}</h3>
-                        <div class="data-rows">
+                        <h2> Favorite Team: {{favTeamData.response.team.name}}</h2>
+                        <div class="data-rows-top">
                             <div>
                                 <img src="{{favTeamData.response.team.logo}}">
                             </div>
