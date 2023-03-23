@@ -1,0 +1,33 @@
+/*logoButton*/
+.logoButton{
+    border-radius: 25px;
+    border-color: rgb(60, 132, 171);
+    transition-duration: 0.4s;
+}
+
+.logoButton:hover{
+    background-color: rgb(255, 115, 29);
+    color: white;
+}
+
+/*logoImage*/
+.logoImage{
+    height:5rem;
+    width:5rem;
+    padding-bottom: 5px;
+}
+
+.title{
+    display: block;
+    width: 624px;
+    margin: 0 auto;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    font-family : Impact;
+    transition-duration: 0.4s;
+}
+
+.title:hover{
+    color: #FF731D;
+}

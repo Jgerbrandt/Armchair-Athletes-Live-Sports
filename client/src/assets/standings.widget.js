@@ -97,7 +97,7 @@ async function hockey_standings(t, e, s, n, a, l, o=!1) {
         for (const t in e.response)
             for (const s in e.response[t]) {
                 let a = e.response[t][s];
-                if (i !== a.stage && (n += `\n                        <tr>\n                            <td class="wg_header" colspan="10"> ${a.country.name}: ${a.stage}</td>\n                        </tr>\n                    `,
+                if (i !== a.stage && (n += `\n                        <tr>\n                            <td class="wg_league" colspan="10"> ${a.country.name}: ${a.stage}</td>\n                        </tr>\n                    `,
                 i = a.stage),
                 w !== a.group.name) {
                     let t = "";
