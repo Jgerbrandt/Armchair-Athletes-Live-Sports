@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/login-service';
 })
 export class FollowTeam implements OnInit {
   @Input() user: User;
-  teams$: Observable<ApiData[]> = new Observable();
+  teams$: ApiData;
 
   constructor(private loginService: LoginService, 
     private apiDataService: ApiDataService) {
@@ -19,6 +19,7 @@ export class FollowTeam implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("at init");
     this.fetchTeams();
   }
 

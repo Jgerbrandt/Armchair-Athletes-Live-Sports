@@ -13,108 +13,108 @@ private returnData: TeamData
 // myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
 
 
-constructor(
-  private httpClient: HttpClient,
-){
-  this.myHeaders = new Headers();
-  this.myHeaders.append("x-rapidapi-key", "8bab09f0208287f1fe343c5e65a9994f");
-  this.myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
-  this.requestOptions = {
-    method: 'GET',
-    headers: this.myHeaders,
-    redirect: 'follow'
-  }
-  this.returnData = {get: "string",
-        parameter: {
-          team: "string",
-          league: "string",
-          season: "string"
-          },
-        errors: ["string"],
-        results: -1,
-        response: {
-            country: {
-                id: -1,
-                name: "string",
-                code: "string",
-                flag: "String"
-                },
-            league: {
-                id: -1,
-                name: "string",
-                type: "string",
-                logo: "string",
-                season: -1
-                },
-            team: {
-                id: -1,
-                name: "string",
-                logo: "string"
-                },
-            games: {
-                played: {
-                home: -1,
-                away: -1,
-                all: -1
-                },
-            wins: {
-                home: {
-                    total: -1,
-                    percentage: "string"
-                    },
-                away: {
-                    total: -1,
-                    percentage: "string"
-                    },
-                all: {
-                    total: -1,
-                    percentage: "string"
-                    }
+    constructor(
+    private httpClient: HttpClient,
+    ){
+    this.myHeaders = new Headers();
+    this.myHeaders.append("x-rapidapi-key", "8bab09f0208287f1fe343c5e65a9994f");
+    this.myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
+    this.requestOptions = {
+        method: 'GET',
+        headers: this.myHeaders,
+        redirect: 'follow'
+    }
+    this.returnData = {get: "string",
+            parameter: {
+            team: "string",
+            league: "string",
+            season: "string"
             },
-            loses: {
-                home: {
-                    total: -1,
-                    percentage: "string"
+            errors: ["string"],
+            results: -1,
+            response: {
+                country: {
+                    id: -1,
+                    name: "string",
+                    code: "string",
+                    flag: "String"
                     },
-                away: {
-                    total: -1,
-                    percentage: "string"
+                league: {
+                    id: -1,
+                    name: "string",
+                    type: "string",
+                    logo: "string",
+                    season: -1
                     },
-                all: {
-                    total: -1,
-                    percentage: "string"
-                    }
-                }
-            },
-            goals: {
-                for: {
-                    total: {
+                team: {
+                    id: -1,
+                    name: "string",
+                    logo: "string"
+                    },
+                games: {
+                    played: {
                     home: -1,
                     away: -1,
                     all: -1
                     },
-                    average: {
-                    home: "string",
-                    away: "string",
-                    all: "string"
+                wins: {
+                    home: {
+                        total: -1,
+                        percentage: "string"
+                        },
+                    away: {
+                        total: -1,
+                        percentage: "string"
+                        },
+                    all: {
+                        total: -1,
+                        percentage: "string"
+                        }
+                },
+                loses: {
+                    home: {
+                        total: -1,
+                        percentage: "string"
+                        },
+                    away: {
+                        total: -1,
+                        percentage: "string"
+                        },
+                    all: {
+                        total: -1,
+                        percentage: "string"
+                        }
                     }
-                    },
-                against: {
-                    total: {
-                    home: -1,
-                    away: -1,
-                    all: -1
-                    },
-                    average: {
-                     home: "string",
-                    away: "string",
-                    all: "string"
-                    }
+                },
+                goals: {
+                    for: {
+                        total: {
+                        home: -1,
+                        away: -1,
+                        all: -1
+                        },
+                        average: {
+                        home: "string",
+                        away: "string",
+                        all: "string"
+                        }
+                        },
+                    against: {
+                        total: {
+                        home: -1,
+                        away: -1,
+                        all: -1
+                        },
+                        average: {
+                        home: "string",
+                        away: "string",
+                        all: "string"
+                        }
+                        }
                     }
                 }
             }
-          }
-}
+    }
 
   async makeCall(league: number, season: number, team: number){
     // let returnObj: TeamData;
@@ -128,18 +128,25 @@ constructor(
     // return favTeamData$;
 
 
-  return await fetch("https://v1.hockey.api-sports.io/teams/statistics?season="+season+"&team="+team+"&league="+league, this.requestOptions)
-  .then(response => response.text())
-  .then(result => {this.returnData = JSON.parse(result)})
-  .then(parsed => {return this.returnData;})
-  .catch(error => {alert(error); return this.returnData;});
-  //return this.returnData;
+    return await fetch("https://v1.hockey.api-sports.io/teams/statistics?season="+season+"&team="+team+"&league="+league, this.requestOptions)
+    .then(response => response.text())
+    .then(result => {this.returnData = JSON.parse(result)})
+    .then(parsed => {return this.returnData;})
+    .catch(error => {alert(error); return this.returnData;});
+    //return this.returnData;
   }
-  
-  
-  
 
 
+  async makeCallAllTeams(league: number, season: number): Promise<string>{
+    console.log("in API call");
+    let res: string;
+
+    return await fetch("https://v1.hockey.api-sports.io/teams?season="+season+"&league="+league, this.requestOptions)
+    .then(response => response.text())
+    .then(result => {console.log(`text response${result}`);res = result})
+    .then(parsed => {console.log("in the succ for api");return res;})
+    .catch(error => {console.log("in the error for api");alert(error); return res;});
+  }
 
 
 }

@@ -68,7 +68,7 @@ async function applySchemaValidationApiData(db: mongodb.Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
-            required: ["ts", "flag", "json"],
+            required: ["flag", "json"],
             additionalProperties: false,
             properties: {
                 _id: {},
