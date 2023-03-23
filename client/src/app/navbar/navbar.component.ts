@@ -8,3 +8,5 @@ import { Component } from '@angular/core';
 export class Navbar{
     //Functions go here
 }
+
+ /*comment ignore*/
