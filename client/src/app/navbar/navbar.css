@@ -17,8 +17,6 @@
     color:white
 }
 .mainButtons button{
-    transition-duration: 0.2s;
-
     border: none;
     border-width: 0px;
 
@@ -26,9 +24,9 @@
     border-style:solid;
     background-color:transparent;
     font-size:1.5rem;
+    font-weight: bold;
     color: black;
-    font-family: 'Alfa Slab One', sans-serif;
-    font-weight: bolder;
+    font-family:"Copperplate Gothic Light", "Copperplate Gothic Light", sans-serif
 }
 
 .navbar img{
@@ -56,6 +54,8 @@
     display:flex;
     flex-direction: column;
     font-family:Arial, Helvetica, sans-serif;
+
+
 }
 
  .drop{
@@ -64,20 +64,16 @@
  }
  
  .dropitem {
-    border: 2px;
-    background-color: rgba(181, 207, 249, 0.95);
-    border-radius: 15px;
+    border: 0px;
  }
  
  .drop-content:hover {
     color: #f1f1f1;
+    text-decoration: underline;
 }
 
 .dropitem:hover {
-    transition-duration: 0.2s;
-    font-weight: bold;
-    transform: scale(1.2) perspective(1px);
-    color: black;
+    text-decoration: underline;
 }
  
  .drop:hover .drop-content {display: block;}
