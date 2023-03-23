@@ -46,6 +46,10 @@
     --teams-logo-block-background-modal: var(--background-color-header);
 }
 
+.welcome{
+    padding-top: 20px;
+}
+
 .title{
     color: var(--color-text-header);
     background-color: var(--background-color);
