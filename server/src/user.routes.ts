@@ -100,7 +100,6 @@ userRouter.get("/:email/:password", async (req, res) => {
 
 userRouter.post("/", async (req, res) => {
     try {
-
         console.log("\nin the post(insert) server side, body:");
         console.log(req.body);
 
