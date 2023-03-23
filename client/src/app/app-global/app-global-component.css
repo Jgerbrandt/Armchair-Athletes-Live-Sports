@@ -31,3 +31,8 @@
 .title:hover{
     color: #FF731D;
 }
+
+.appglobal{
+    width: 100vw;
+    height:100vh;
+}

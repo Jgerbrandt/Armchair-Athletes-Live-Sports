@@ -7,30 +7,63 @@
             </h1>
         </div>
             <div *ngIf="user._id!='-1'">
-                <div *ngIf="favTeamData.results">
-                <div *ngIf="favTeamData.results>0">
-                <div *ngIf="favTeamData.response">
                     <div class="data-column">
-                    <h2> Favorite Team</h2>
-                    <p>{{favTeamData.response.team.name}}</p>
+                        <h2> Favorite Team: {{favTeamData.response.team.name}}</h2>
+                        <div class="data-rows-top">
+                            <div>
+                                <img src="{{favTeamData.response.team.logo}}">
+                            </div>
+                            <div>
+                                <div class="data-column">
+                                <p>Games Played: {{favTeamData.response.games.played.all}}</p>
+                                <p>Win Rate: {{favTeamData.response.games.wins.all.percentage}}</p>
+                                <p>Total Goals: {{favTeamData.response.goals.for.total.all}}</p>
+                                <p>Average Goals: {{favTeamData.response.goals.for.average.all}}</p>
+                                </div>
+                            </div>
+                    </div>
+                    
                     <div class="data-rows">
-                        <div>
-                    <img src="{{favTeamData.response.team.logo}}">
+                        <div class="sched">
+                            <h3>Upcoming Games:</h3>
+                            <div class="data-column-reverse">
+                            <div *ngFor="let game of schedData.response">
+                                <div *ngIf="game.status.short=='NS'">
+                                        <div class="data-column">
+                                            <div class="data-rows-info-upcoming">
+                                                <img src="{{game.teams.home.logo}}"/>
+                                                <div class="data-column">
+                                                    <p>{{game.teams.home.name}} vs {{game.teams.away.name}}</p>
+                                                    <p> {{game.date}}</p>
+                                                </div>
+                                                <img src="{{game.teams.away.logo}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                            
+                        <div class="sched">
+                            <h3>Recent Games:</h3>
+                            <div *ngFor="let game of schedData.response">
+                                    <div *ngIf="game.status.short!='NS'">
+                                        <div class="data-column">
+                                            <div class="data-rows-info-recent">
+                                                <img src="{{game.teams.home.logo}}"/>
+                                                <div class="data-column">
+                                                    <p>{{game.teams.home.name}} vs {{game.teams.away.name}}</p>
+                                                    <p>{{game.scores.home}} - {{game.scores.away}}</p>
+                                                    <p> {{game.date}}</p>
+                                                </div>
+                                                <img src="{{game.teams.away.logo}}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                    <p>Games Played: {{favTeamData.response.games.played.all}}</p>
-                    <p>Win Rate: {{favTeamData.response.games.wins.all.percentage}}</p>
-                    <p>Total Goals: {{favTeamData.response.goals.for.total.all}}</p>
-                    <p>Average Goals: {{favTeamData.response.goals.for.average.all}}</p>
-                    </div>
-                
-
-
                 </div>
-                </div>
-                </div>
-                
             </div>
-        </div>
-    </div>
+                
 
