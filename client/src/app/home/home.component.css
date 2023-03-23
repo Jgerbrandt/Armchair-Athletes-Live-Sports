@@ -31,9 +31,16 @@
     justify-content:center;
     align-content:center;
     position:center;
-    border: solid;
-    border-width: 2px;
     margin:2rem;
+    border:solid;
+    border-width: 3px;
+    border-color:rgb(30, 30, 30);
+    border-radius: 25px;
+    background: rgb(149, 189, 255);
+    font-size:1rem;
+    font-weight: bold;
+    color: black;
+    font-family:"Copperplate Gothic Light", "Copperplate Gothic Light", sans-serif
 }
 
 .data-rows-info-recent{
@@ -42,9 +49,16 @@
     justify-content:center;
     align-content:center;
     position:center;
-    border: solid;
-    border-width: 2px;
     margin:2rem;
+    border:solid;
+    border-width: 3px;
+    border-color:rgb(30, 30, 30);
+    border-radius: 25px;
+    background: rgb(149, 189, 255);
+    font-size:1rem;
+    font-weight: bold;
+    color: black;
+    font-family:"Copperplate Gothic Light", "Copperplate Gothic Light", sans-serif
 }
 
 .data-rows-info-upcoming img{
