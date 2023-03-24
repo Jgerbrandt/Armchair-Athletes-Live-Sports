@@ -23,7 +23,12 @@ export class LoginService{
         return this.user;
     }
 
-
+    logout(){
+        this.user = {username: "Guest", 
+            password: "-1",
+            email: "-1",
+            _id:"-1"};
+    }
 
 
 }

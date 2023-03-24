@@ -28,7 +28,7 @@ export class Home implements OnInit{
     
     ){
     this.user = this.loginService.getUser();
-    this.favTeam = 675;
+    this.favTeam = 1436;
     //this.api = new apiController();
 
     this.favTeamData = api.getDefaultTeam();
