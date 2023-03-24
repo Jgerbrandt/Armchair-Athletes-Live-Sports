@@ -1,13 +1,22 @@
 <div class="navbar">
-    <div class="mainButtons">
-    <button [routerLink]="['login/']">Login</button>
+    <div *ngIf="user._id=='-1'">
+        <div class="mainButtons">
+            <button [routerLink]="['login/']">Login</button>
+        </div>
     </div>
+    <div *ngIf="user._id!='-1'">
+        <div class="mainButtons">
+            <button (click)="logout()">Logout</button>
+        </div>
+    </div>
+    <div *ngIf="user._id =='-1'">
     <div class="mainButtons">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Merriweather&family=Montserrat&family=Sacramento&display=swap">
     <button [routerLink]="['register/']">Register</button>
     </div>
+</div>
     <div class="drop">
         <div class="mainButtons">
         <button class="dropbtn">View Standings</button>
