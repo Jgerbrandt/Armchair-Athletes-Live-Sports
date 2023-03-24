@@ -23,7 +23,4 @@ export class LoginService{
         return this.user;
     }
 
-
-
-
 }

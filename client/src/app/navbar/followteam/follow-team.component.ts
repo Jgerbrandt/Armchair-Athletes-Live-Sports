@@ -56,15 +56,14 @@ export class FollowTeam implements OnInit {
 
   addTeam(team: Team) {
 
-    const newFollowTeam = { team_id: team.team_id, user_id: this.user._id}
     
-    //alert(newFollowTeam._id);
-    alert(newFollowTeam.team_id);
-    alert(newFollowTeam.user_id);
 
-    team.team_id = newFollowTeam.team_id;
-    // ERROR HERRE
-    //team.user_id = newFollowTeam.user_id;
+    const myId: string = this.user._id!;
+    team.user_id = myId;
+
+    // id checks
+    //alert(team.team_id);
+    //alert(team.user_id);
 
     this.teamService.createTeam(team)
         .subscribe({
@@ -79,29 +78,6 @@ export class FollowTeam implements OnInit {
           }
     });
 
-    /*
-    this.teamService.checkUser(team)
-    .subscribe({
-      next: () => {
-        //todo: here we need to store user somewhere maybe with cookies or something
-        
-        alert("This email already has an account associated with it.");
-      },
-      error: (error) => {
-        this.teamService.createUser(team)
-        .subscribe({
-          next: () => {
-            //this.loginService.login(user);
-            //this.router.navigate(['../home']);
-          },
-          error: (error) => {
-            alert("Failed to create team");
-            console.error(error);
-          }
-        });
-      }
-    }); 
-    */
   }
 
   private fetchTeams(): void {
