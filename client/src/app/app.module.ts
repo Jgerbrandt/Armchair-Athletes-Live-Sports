@@ -15,6 +15,7 @@ import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
 import { LoginFormComponent } from './navbar/login/login-form.components';
+import { LogoutComponent } from './logout/logout.component';
 //import { Register } from './navbar/register/register.component';
 
 @NgModule({
@@ -28,6 +29,7 @@ import { LoginFormComponent } from './navbar/login/login-form.components';
     Navbar,
     Login,
     LoginFormComponent,
+    LogoutComponent,
     //Register
   ],
   imports: [

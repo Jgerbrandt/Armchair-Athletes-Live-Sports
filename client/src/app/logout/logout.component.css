@@ -1,0 +1,18 @@
+/*logoutButton*/
+.logoutButton{
+    position: absolute;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    right: 20px;
+    border:solid;
+    border-width: 2px;
+    border-color:rgb(30, 30, 30);
+    border-radius: 25px;
+    background: rgb(149, 189, 255);
+    font-family: 'Alfa Slab One', sans-serif;
+    font-weight: bold;
+}
+
+.logoutButton:hover{
+    color: white;
+}
