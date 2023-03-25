@@ -7,8 +7,8 @@ import { ApiData } from './apiData';
   providedIn: 'root'
 })
 export class ApiDataService {
-  //private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  private url = 'http://localhost:5200';
+  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
+  //private url = 'http://localhost:5200';
   //'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app'
   private apiData$: Subject<ApiData[]> = new Subject();
 

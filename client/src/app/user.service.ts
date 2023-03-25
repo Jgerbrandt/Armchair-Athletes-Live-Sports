@@ -7,8 +7,8 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class UserService {
-  //private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  private url = 'http://localhost:5200';
+  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
+  //private url = 'http://localhost:5200';
   //'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app'
   private users$: Subject<User[]> = new Subject();
 
