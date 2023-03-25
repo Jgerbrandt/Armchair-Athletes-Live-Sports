@@ -5,6 +5,7 @@ import { apiController } from '../apiController/apiController';
 import { TeamData } from '../apiController/teamData';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { SchedData } from '../apiController/schedData';
 
 @Component({
   selector: 'app-home',
@@ -17,108 +18,24 @@ export class Home implements OnInit{
   season: number = 2022;
   league: number = 57;
   favTeamData: TeamData;
+  schedData: SchedData;
   //api: apiController;
+
 
   constructor(
     private loginService: LoginService,
-    private api: apiController
+    private api: apiController,
+    
     ){
     this.user = this.loginService.getUser();
-    this.favTeam = 675;
+    this.favTeam = 1436;
     //this.api = new apiController();
 
-    this.favTeamData = {
-        get: "string",
-        parameter: {
-          team: "string",
-          league: "string",
-          season: "string"
-          },
-        errors: ["string"],
-        results: -1,
-        response: {
-            country: {
-                id: -1,
-                name: "string",
-                code: "string",
-                flag: "String"
-                },
-            league: {
-                id: -1,
-                name: "string",
-                type: "string",
-                logo: "string",
-                season: -1
-                },
-            team: {
-                id: -1,
-                name: "string",
-                logo: "string"
-                },
-            games: {
-                played: {
-                home: -1,
-                away: -1,
-                all: -1
-                },
-            wins: {
-                home: {
-                    total: -1,
-                    percentage: "string"
-                    },
-                away: {
-                    total: -1,
-                    percentage: "string"
-                    },
-                all: {
-                    total: -1,
-                    percentage: "string"
-                    }
-            },
-            loses: {
-                home: {
-                    total: -1,
-                    percentage: "string"
-                    },
-                away: {
-                    total: -1,
-                    percentage: "string"
-                    },
-                all: {
-                    total: -1,
-                    percentage: "string"
-                    }
-                }
-            },
-            goals: {
-                for: {
-                    total: {
-                    home: -1,
-                    away: -1,
-                    all: -1
-                    },
-                    average: {
-                    home: "string",
-                    away: "string",
-                    all: "string"
-                    }
-                    },
-                against: {
-                    total: {
-                    home: -1,
-                    away: -1,
-                    all: -1
-                    },
-                    average: {
-                     home: "string",
-                    away: "string",
-                    all: "string"
-                    }
-                    }
-                }
-            }
-  }
+    this.favTeamData = api.getDefaultTeam();
+    this.schedData = api.getDefaultSched();
+        
 }
+
 
   ngOnInit(){
     this.user = this.loginService.getUser();
@@ -126,8 +43,15 @@ export class Home implements OnInit{
     //Logic here to set users favorite team
     if(this.user._id != '-1'){
       let temp: Promise<TeamData>;
-    temp = this.api.makeCall(this.league, this.season, this.favTeam);
+    temp = this.api.makeTeamCall(this.league, this.season, this.favTeam);
     temp.then((data) => {this.favTeamData = data})
+    let tempSched: Promise<SchedData>;
+    tempSched = this.api.makeSchedCall(this.league, this.season, this.favTeam);
+    tempSched.then((data) => {this.schedData = data; data.response.reverse()})
+    .then((sliced) => {this.schedData.response.forEach((game, i) => {this.schedData.response[i].date = new Date(Date.parse(game.date)).toString().substring(0, 21)})})
+    }
+    
+    
 
 
 
@@ -135,7 +59,7 @@ export class Home implements OnInit{
       //this.favTeamData = this.api.makeCall("teams?id="+this.favTeam);
     //alert(this.api.makeCall("teams?id="+this.favTeam));
      // alert(teamData);
-    }
+    
   }
 
   // updateText(){

@@ -1,19 +1,24 @@
 .navbar{
-    background: rgb(128,128,128);
-background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,14,255,0.6755952380952381) 100%);
+    background: rgb(149, 189, 255);
     padding-left: 2rem;
     padding-right: 2rem;
-    display:flex;
-    flex-direction:row;
+    /*display:flex;*/
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+    /*flex-direction:row;*/
     border:solid;
     border-width: 3px;
     border-color:rgb(30, 30, 30);
+    border-radius: 25px;
 }
 
 .mainButtons:hover button{
     color:white
 }
 .mainButtons button{
+    transition-duration: 0.2s;
+
     border: none;
     border-width: 0px;
 
@@ -21,9 +26,9 @@ background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,14,255,0.675595
     border-style:solid;
     background-color:transparent;
     font-size:1.5rem;
-    font-weight: bold;
     color: black;
-    font-family:Arial, Helvetica, sans-serif
+    font-family: 'Alfa Slab One', sans-serif;
+    font-weight: bolder;
 }
 
 .navbar img{
@@ -51,8 +56,6 @@ background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,14,255,0.675595
     display:flex;
     flex-direction: column;
     font-family:Arial, Helvetica, sans-serif;
-
-
 }
 
  .drop{
@@ -61,16 +64,22 @@ background: linear-gradient(0deg, rgba(128,128,128,1) 0%, rgba(0,14,255,0.675595
  }
  
  .dropitem {
-    border: 0px;
+    border: 2px;
+    background-color: rgba(181, 207, 249, 0.95);
+    border-radius: 15px;
  }
  
  .drop-content:hover {
     color: #f1f1f1;
-    text-decoration: underline;
 }
 
 .dropitem:hover {
-    text-decoration: underline;
+    transition-duration: 0.2s;
+    font-weight: bold;
+    transform: scale(1.2) perspective(1px);
+    color: black;
 }
  
  .drop:hover .drop-content {display: block;}
+
+ /*comment ignore*/
