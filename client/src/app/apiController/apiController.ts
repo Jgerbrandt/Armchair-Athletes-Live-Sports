@@ -14,7 +14,6 @@ private schedData!: SchedData;
 // myHeaders.append("x-rapidapi-key", "XxXxXxXxXxXxXxXxXxXxXxXx");
 // myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
 
-
 constructor(
   private httpClient: HttpClient,
 ){
@@ -101,22 +100,21 @@ constructor(
                     all: "Loading..."
                     }
                     },
-                against: {
-                    total: {
-                    home: -1,
-                    away: -1,
-                    all: -1
-                    },
-                    average: {
-                     home: "string",
-                    away: "string",
-                    all: "string"
+                    against: {
+                        total: {
+                        home: -1,
+                        away: -1,
+                        all: -1
+                        },
+                        average: {
+                        home: "string",
+                        away: "string",
+                        all: "string"
+                        }
+                        }
                     }
-                    }
-                }
             }
-          }
-          
+          }         
 }
 
 getDefaultTeam(){
@@ -147,18 +145,25 @@ async makeSchedCall(league: number, season: number, team:number){
     // return favTeamData$;
 
 
-  return await fetch("https://v1.hockey.api-sports.io/teams/statistics?season="+season+"&team="+team+"&league="+league, this.requestOptions)
-  .then(response => response.text())
-  .then(result => {this.returnData = JSON.parse(result)})
-  .then(parsed => {return this.returnData;})
-  .catch(error => {alert(error); return this.returnData;});
-  //return this.returnData;
+    return await fetch("https://v1.hockey.api-sports.io/teams/statistics?season="+season+"&team="+team+"&league="+league, this.requestOptions)
+    .then(response => response.text())
+    .then(result => {this.returnData = JSON.parse(result)})
+    .then(parsed => {return this.returnData;})
+    .catch(error => {alert(error); return this.returnData;});
+    //return this.returnData;
   }
-  
-  
-  
 
 
+  async makeCallAllTeams(league: number, season: number): Promise<string>{
+    console.log("in API call");
+    let res: string;
+
+    return await fetch("https://v1.hockey.api-sports.io/teams?season="+season+"&league="+league, this.requestOptions)
+    .then(response => response.text())
+    .then(result => {console.log(`text response${result}`);res = result})
+    .then(parsed => {console.log("in the succ for api");return res;})
+    .catch(error => {console.log("in the error for api");alert(error); return res;});
+  }
 
 
 }

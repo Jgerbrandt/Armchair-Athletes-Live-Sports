@@ -1,8 +1,10 @@
 import * as mongodb from "mongodb";
 import { User } from "./user";
+import { ApiData } from "./apiData";
 //test
 export const collections: {
     users?: mongodb.Collection<User>;
+    apiData?: mongodb.Collection<ApiData>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -10,15 +12,18 @@ export async function connectToDatabase(uri: string) {
     await client.connect();
 
     const db = client.db("ArmChairAthletes");
-    await applySchemaValidation(db);
+    await applySchemaValidationUsers(db);
+    await applySchemaValidationApiData(db);
 
     const usersCollection = db.collection<User>("users+");
     collections.users = usersCollection;
+    const apidDataCollection = db.collection<ApiData>("apiData");
+    collections.apiData = apidDataCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
 // For more information about schema validation, see this blog series: https://www.mongodb.com/blog/post/json-schema-validation--locking-down-your-model-the-smart-way
-async function applySchemaValidation(db: mongodb.Db) {
+async function applySchemaValidationUsers(db: mongodb.Db) {
     const jsonSchema = {
         $jsonSchema: {
             bsonType: "object",
@@ -54,6 +59,43 @@ async function applySchemaValidation(db: mongodb.Db) {
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === "NamespaceNotFound") {
             await db.createCollection("users+", {validator: jsonSchema});
+        }
+    });
+}
+
+
+async function applySchemaValidationApiData(db: mongodb.Db) {
+    const jsonSchema = {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["flag", "json"],
+            additionalProperties: false,
+            properties: {
+                _id: {},
+                ts: {
+                    bsonType: "number",
+                    description: "'ts' is required and is a number"
+                },
+                flag: {
+                    bsonType: "string",
+                    description: "'flag' is required and is a string"
+                },
+                json: {
+                    bsonType: "string",
+                    description: "'json' is required and is a string"
+                }
+            },
+        },
+    };
+    
+
+    // Try applying the modification to the collection, if the collection doesn't exist, create it 
+   await db.command({
+        collMod: "apiData",
+        validator: jsonSchema
+    }).catch(async (error: mongodb.MongoServerError) => {
+        if (error.codeName === "NamespaceNotFound") {
+            await db.createCollection("apiData", {validator: jsonSchema});
         }
     });
 }

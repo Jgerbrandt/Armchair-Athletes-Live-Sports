@@ -44,6 +44,7 @@ userRouter.get("/:email/:password", async (req, res) => {
 
         const email = req?.params?.email;
         const password = req?.params?.password;
+        
 
         //here password is used a default search code to search by email alone
         if(password == "a1"){
@@ -104,6 +105,9 @@ userRouter.post("/", async (req, res) => {
         console.log(req.body);
 
         const user = req.body;
+        console.log("\n\n The insert is:~~~~~~~\n");
+        console.log(user);
+        console.log("~~~~~~~~~~\n\n");
         const result = await collections.users.insertOne(user);
         if (result.acknowledged) {
             res.status(201).send(`Created a new user: ID ${result.insertedId}.`);

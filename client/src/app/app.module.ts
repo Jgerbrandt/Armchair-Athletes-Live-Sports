@@ -15,7 +15,8 @@ import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
 import { LoginFormComponent } from './navbar/login/login-form.components';
-//import { Register } from './navbar/register/register.component';
+//Favorite team VVVVV
+import { FollowTeam } from './navbar/followteam/follow-team.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +28,8 @@ import { LoginFormComponent } from './navbar/login/login-form.components';
     Home,
     Navbar,
     Login,
-    LoginFormComponent
-    //Register
+    LoginFormComponent,
+    FollowTeam
   ],
   imports: [
     BrowserModule,
