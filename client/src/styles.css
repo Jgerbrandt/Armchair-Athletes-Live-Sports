@@ -2,9 +2,9 @@
 :root {
     --font: "Raleway", sans-serif;
 
-    --background-color:  rgba(86,87,95,1);
-    --background-color-header: rgba(17, 138, 147, 0.63);
-    --color-text: #fff;
+    --background-color:  rgb(233, 248, 249);
+    --background-color-header: #95bdff;
+    --color-text: #000;
     --color-text-header: #000;
     --color-green: #01d099;
     --color-red: #f64e60;
@@ -44,6 +44,17 @@
     --teams-logo-block-modal-size: 85px;
     --teams-logo-block-radius-modal: 5px;
     --teams-logo-block-background-modal: var(--background-color-header);
+}
+
+.welcome{
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.title{
+    color: var(--color-text-header);
+    background-color: var(--background-color);
+    padding: var(--secondary-padding);
 }
 
 .wg-table {
@@ -96,6 +107,17 @@ td > span {
     font-family: var(--font);
     font-size: var(--toolbar-font-size);
     letter-spacing: normal;
+}
+
+.wg_league {
+    padding: var(--secondary-padding);
+    font-size: var(--header-font-size);
+    font-weight: 600;
+    background: var(--background-color-header);
+    color: var(--color-text-header);
+    text-transform: var(--header-text-transform);
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .wg_header {
@@ -181,7 +203,7 @@ td > span {
 }
 .wg_progress_bar_green {
     height: 6px;
-    background-color: var(rgba(17, 138, 147, 0.63));
+    background-color: var(#95bdff);
 }
 .wg_progress_bar_red {
     height: 6px;
@@ -246,7 +268,7 @@ td > span {
     font-size: var(--button-info-font-size);
     text-align: center;
     position: relative;
-    color: rgba(86,87,95,1);
+    color: #95bdff;
     background: var(--background-color-header);
 }
 
@@ -324,8 +346,8 @@ td > span {
   height: 45px;
   margin: auto;
   border-radius: 50%;
-  border: 6px solid var(rgba(17, 138, 147, 0.63));
-  border-color: var(rgba(17, 138, 147, 0.63)) transparent var(rgba(17, 138, 147, 0.63)) transparent;
+  border: 6px solid var(#95bdff);
+  border-color: var(#95bdff) transparent var(#95bdff) transparent;
   animation: wg_dual_ring 1.2s linear infinite;
 }
 @keyframes wg_dual_ring {
@@ -566,4 +588,6 @@ td > span {
         line-height: 10px;
     }
 }
+
+
 
