@@ -1,0 +1,57 @@
+/*logoButton*/
+.logoButton{
+    border-radius: 25px;
+    border-color: rgb(60, 132, 171);
+    transition-duration: 0.4s;
+}
+
+.logoButton:hover{
+    background-color: rgb(255, 115, 29);
+    color: white;
+}
+
+/*logoutButton*/
+.logoutButton{
+    position: absolute;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    right: 20px;
+    border:solid;
+    border-width: 2px;
+    border-color:rgb(30, 30, 30);
+    border-radius: 25px;
+    background: rgb(149, 189, 255);
+    font-family: 'Alfa Slab One', sans-serif;
+    font-weight: bold;
+}
+
+.logoutButton:hover{
+    color: white;
+}
+
+/*logoImage*/
+.logoImage{
+    height:5rem;
+    width:5rem;
+    padding-bottom: 5px;
+}
+
+.title{
+    display: block;
+    width: 624px;
+    margin: 0 auto;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    font-family : Impact;
+    transition-duration: 0.4s;
+}
+
+.title:hover{
+    color: #FF731D;
+}
+
+.appglobal{
+    width: 100vw;
+    height:100vh;
+}

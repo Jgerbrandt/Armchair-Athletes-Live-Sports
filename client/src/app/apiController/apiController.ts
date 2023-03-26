@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
+import { SchedData } from "./schedData";
 import { TeamData } from "./teamData";
 
 
@@ -8,7 +9,8 @@ import { TeamData } from "./teamData";
 export class apiController{
 private myHeaders;
 private requestOptions: {};
-private returnData: TeamData
+private returnData: TeamData;
+private schedData!: SchedData;
 // myHeaders.append("x-rapidapi-key", "XxXxXxXxXxXxXxXxXxXxXxXx");
 // myHeaders.append("x-rapidapi-host", "v1.hockey.api-sports.io");
 
@@ -48,27 +50,27 @@ constructor(
                 },
             team: {
                 id: -1,
-                name: "string",
-                logo: "string"
+                name: "Loading...",
+                logo: "Loading..."
                 },
             games: {
                 played: {
-                home: -1,
-                away: -1,
-                all: -1
+                home: 0,
+                away: 0,
+                all: 0
                 },
             wins: {
                 home: {
                     total: -1,
-                    percentage: "string"
+                    percentage: "Loading..."
                     },
                 away: {
                     total: -1,
-                    percentage: "string"
+                    percentage: "Loading..."
                     },
                 all: {
-                    total: -1,
-                    percentage: "string"
+                    total: 0,
+                    percentage: "Loading..."
                     }
             },
             loses: {
@@ -91,12 +93,12 @@ constructor(
                     total: {
                     home: -1,
                     away: -1,
-                    all: -1
+                    all: 0
                     },
                     average: {
                     home: "string",
                     away: "string",
-                    all: "string"
+                    all: "Loading..."
                     }
                     },
                 against: {
@@ -114,9 +116,26 @@ constructor(
                 }
             }
           }
+          
 }
 
-  async makeCall(league: number, season: number, team: number){
+getDefaultTeam(){
+    return this.returnData;
+}
+
+getDefaultSched(){
+    return this.schedData;
+}
+
+async makeSchedCall(league: number, season: number, team:number){
+    return await fetch("https://v1.hockey.api-sports.io/games?league="+league+"&season="+season+"&team="+team, this.requestOptions)
+  .then(response => response.text())
+  .then(result => {this.schedData = JSON.parse(result);})
+  .then(returnVal => {return this.schedData;})
+  .catch(error => {alert(error); return this.schedData});
+}
+
+  async makeTeamCall(league: number, season: number, team: number){
     // let returnObj: TeamData;
     // returnObj = {};
 
