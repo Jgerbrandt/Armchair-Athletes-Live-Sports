@@ -9,30 +9,22 @@ import { FavTeam } from './favTeam';
 export class FavTeamService {
   private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
   //private url = 'http://localhost:5200';
-  //'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app'
-  private favTeams$: Subject<FavTeam[]> = new Subject();
+  private FavTeam$: Subject<FavTeam> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
 
-  private refreshFavTeams() {
-    console.log("should not be able to get here\n");
-    this.httpClient.get<FavTeam[]>(`${this.url}/favTeams`)
-      .subscribe(favTeams => {
-        this.favTeams$.next(favTeams);
-      });
+  getFavTeam(UserID: string): Observable<FavTeam> {
+    return this.httpClient.get<FavTeam>(`${this.url}/favTeams/${UserID}`);
   }
 
-  getFavTeams(): Subject<FavTeam[]> {
-    this.refreshFavTeams();
-    return this.favTeams$;
-  }
-
+  //will follow a team or replace old fav team with new one
   createFavTeam(favTeam: FavTeam): Observable<string> {
     console.log("We are now creating the FavTeam\n");
     return this.httpClient.post(`${this.url}/favTeams`, favTeam, { responseType: 'text' });
   }
 
-  deleteFavTeam(id: string): Observable<string> {
-    return this.httpClient.delete(`${this.url}/favTeams/${id}`, { responseType: 'text' });
-  }
+  //no unfollow team functionality for right now
+//   deleteFavTeam(id: string): Observable<string> {
+//     return this.httpClient.delete(`${this.url}/favTeams/${id}`, { responseType: 'text' });
+//   }
 }
