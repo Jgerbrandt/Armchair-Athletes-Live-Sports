@@ -7,38 +7,6 @@ import { collections } from "./database";
 export const apiDataRouter = express.Router();
 apiDataRouter.use(express.json());
 
-// apiDataRouter.get("/", async (_req, res) => {
-//     console.log("a user is requesting all apiData");
-//     console.log("probably dont want this to be a thing.");
-//     try {
-//         const apiData = await collections.apiData.find({}).toArray();
-//         res.status(200).send(apiData);
-//     } catch (error) {
-//         res.status(500).send(error.message);
-//     }
-// });
-
-// apiDataRouter.get("/:id", async (req, res) => {
-//     try {
-//         console.log("\nin the api get (ID) one, ID:");
-//         console.log("probably dont want this to be a thing.");
-//         console.log(req?.params?.id);
-
-
-//         const id = req?.params?.id;
-//         const query = { _id: new mongodb.ObjectId(id) };
-//         const apiData = await collections.apiData.findOne(query);
-
-//         if (apiData) {
-//             res.status(200).send(apiData);
-//         } else {
-//             res.status(404).send(`Failed to find an apiData: ID ${id}`);
-//         }
-//     } catch (error) {
-//         res.status(404).send(`Failed to find an apiData: ID ${req?.params?.id}`);
-//     }
-// });
-
 apiDataRouter.get("/:flag", async (req, res) => {
     try {
         console.log("\nin the apiData get with the flag:");
