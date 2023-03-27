@@ -7,9 +7,7 @@ import { Team } from './team';
   providedIn: 'root'
 })
 export class TeamService {
-  //private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  private url = 'http://localhost:5200';
-  //'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app'
+  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
   private teams$: Subject<Team[]> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
