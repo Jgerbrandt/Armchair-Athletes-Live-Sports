@@ -7,8 +7,8 @@ import { FavTeam } from './favTeam';
   providedIn: 'root'
 })
 export class FavTeamService {
-  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  //private url = 'http://localhost:5200';
+  //private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
+  private url = 'http://localhost:5200';
   private FavTeam$: Subject<FavTeam> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
@@ -22,9 +22,4 @@ export class FavTeamService {
     console.log("We are now creating the FavTeam\n");
     return this.httpClient.post(`${this.url}/favTeams`, favTeam, { responseType: 'text' });
   }
-
-  //no unfollow team functionality for right now
-//   deleteFavTeam(id: string): Observable<string> {
-//     return this.httpClient.delete(`${this.url}/favTeams/${id}`, { responseType: 'text' });
-//   }
 }

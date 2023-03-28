@@ -9,8 +9,8 @@ import { TeamData } from './apiController/teamData';
   providedIn: 'root'
 })
 export class ApiDataService {
-  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  //private url = 'http://localhost:5200';
+  //private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
+  private url = 'http://localhost:5200';
   private teamsJson$: ApiData;
   private league = 57; //nhl
   private season = 2022; //current season

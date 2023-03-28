@@ -1,5 +1,5 @@
 export interface FavTeam {
-    userID: string;
+    userID?: string;
     teamID: string;
     _id?: string;
 }

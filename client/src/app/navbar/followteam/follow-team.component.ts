@@ -1,10 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 import { ApiData } from 'src/app/apiData';
 import { User } from 'src/app/user';
+import { FavTeam } from 'src/app/favTeam';
 import { ApiDataService } from 'src/app/apiData.service';
 import { LoginService } from 'src/app/login-service';
-import { AllTeamData,OneTeamData } from './allTeamData';
+import { FavTeamService } from 'src/app/favTeam.service';
+import { AllTeamData, OneTeamData } from './allTeamData';
 
 @Component({
   selector: 'app-follow-teams-list',
@@ -15,8 +18,11 @@ export class FollowTeam implements OnInit {
   teams$: ApiData;
   teamsParsed$: OneTeamData[];
 
-  constructor(private loginService: LoginService, 
-    private apiDataService: ApiDataService) {
+  constructor(
+    private router: Router,
+    private loginService: LoginService, 
+    private apiDataService: ApiDataService,
+    private favTeamService: FavTeamService) {
     this.user = this.loginService.getUser();
   }
 
@@ -26,8 +32,20 @@ export class FollowTeam implements OnInit {
     this.teamsParsed$ = JSON.parse(this.teams$.json).response;
   }
 
-  followTeam(id: string): void {
-    console.log(`team idea selected is ${id}`);
+  followTeam(teamID: string): void {
+    let newFavTeam: FavTeam = {teamID: teamID, userID: this.user._id};
+    console.log(`rq the user id is ${this.user._id}`);
+
+    this.favTeamService.createFavTeam(newFavTeam)
+    .subscribe({
+      next: () => {
+        //this.router.navigate(['../home']);
+      },
+      error: (error) => {
+        alert("Failed to create AMONGUS");
+        console.error(error);
+      }
+    });
   }
 
   private async fetchTeams(): Promise<ApiData> {

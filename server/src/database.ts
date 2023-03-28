@@ -116,11 +116,11 @@ async function applySchemaValidationFavTeams(db: mongodb.Db) {
                 _id: {},
                 userID: {
                     bsonType: "string",
-                    description: "'userID' is required and is a string"
+                    description: "'userID' is required and is a string",
                 },
                 teamID: {
-                    bsonType: "string",
-                    description: "'teamID' is required and is a string"
+                    bsonType: "number",
+                    description: "'teamID' is required and is a number",
                 }
             },
         },
