@@ -11,7 +11,8 @@ import { AllTeamData, OneTeamData } from './allTeamData';
 
 @Component({
   selector: 'app-follow-teams-list',
-  templateUrl: './follow-team.component.html'
+  templateUrl: './follow-team.component.html',
+  styleUrls: ['./follow-team.component.css']
 })
 export class FollowTeam implements OnInit {
   @Input() user: User;

@@ -149,6 +149,11 @@ td > span {
     vertical-align: middle;
 }
 
+.wg_logo2 {
+    width: 25px;
+    vertical-align: middle;
+}
+
 .wg_logo_game {
     height:var(--teams-logo-modal-size);
     vertical-align: middle;

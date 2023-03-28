@@ -17,6 +17,11 @@
     <button [routerLink]="['register/']">Register</button>
     </div>
 </div>
+<div *ngIf="user._id!='-1'">
+    <div class="mainButtons">
+        <button [routerLink]="['followteam/']">Follow Team</button>
+    </div>
+</div>
     <div class="drop">
         <div class="mainButtons">
             <button class="dropbtn">View Standings</button>
@@ -35,9 +40,6 @@
         <button [routerLink]="['ahlgames/']" class="dropitem">AHL Games</button>
     </div>
 </div>
-    <div class="mainButtons">
-        <button [routerLink]="['followteam/']">Follow Team</button>
-    </div>
 </div>
 
 

@@ -1,0 +1,53 @@
+table {
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #95bdff;
+}
+
+thead {
+    padding: .3rem;
+    font-size: 15px;
+    font-weight: 600;
+    background: #95bdff;
+    color: #000;
+    border-color: #95bdff;
+}
+
+th {
+    border-color: #95bdff;
+}
+
+tr {
+    border-color: #95bdff;
+}
+
+.left-head {
+    border-top-left-radius: 10px;
+}
+
+.right-head {
+    border-top-right-radius: 10px;
+}
+
+button {
+    background: #95bdff;
+    padding: 5px 5px 5px 5px;
+    margin: 0;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    top: 2%;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+button:hover {
+    background: #fff;
+    color: #95bdff;
+    border-color: #95bdff;
+}
+
+td {
+    font-size: 15px;
+}
