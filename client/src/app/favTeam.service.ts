@@ -13,7 +13,7 @@ export class FavTeamService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getFavTeam(UserID: string): Observable<FavTeam> {
+  getFavTeam(UserID?: string): Observable<FavTeam> {
     return this.httpClient.get<FavTeam>(`${this.url}/favTeams/${UserID}`);
   }
 
