@@ -17,7 +17,7 @@ describe('#favoriteTeams()', function() {
   let myUser: User;
   this.beforeEach(function() {
       //Login
-      //login = new LoginService();
+      login = new LoginService();
       myUser =
       {username: "user",
         password: "pass",
