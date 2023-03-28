@@ -2,54 +2,47 @@ import * as express from "express";
 import * as mongodb from "mongodb";
 import { ApiData } from "./apiData";
 import { collections } from "./database";
-//happy achievement mode :)
 
+//express router will recive http calls from the client side with
 export const apiDataRouter = express.Router();
 apiDataRouter.use(express.json());
 
+//this function will get API data that is stored in the armChairAthlete DB 
+//based on what the flag is
 apiDataRouter.get("/:flag", async (req, res) => {
     try {
-        console.log("\nin the apiData get with the flag:");
-        console.log(req?.params?.flag);
+        //flag identifies the data being stored
         const flag = req?.params?.flag;
 
         if(flag == "teams"){
-            console.log(`in the get-APIData for the flag: ${flag}`);
-
+            //search for the teams data
             const query = {
                 flag: flag
             };
             const apiData = await collections
             .apiData.findOne(query);
-
-            console.log(query);
-
+            //if we find the data we will not need to make any API calls
+            //otherwise the client side will make an API call and we will
+            //store that later
             if (apiData) {
-                console.log("found apiData:");
-                console.log(apiData);
                 res.status(200).send(apiData);
             } else {
-                console.log("Failed to find an apiData");
                 res.status(404).send(`Failed to find an apiData: flag ${flag}`);
             }
         }
-
     } catch (error) {
         res.status(404).send(`Failed to find an apiData: flag ${req?.params?.flag}`);
     }
 });
 
+//this function will store the API data in the form of json text
+//the data is identified by a flag, a timestamp is also saved for
+//time sensitive data like standings (daily) or game (15 second basis)
 apiDataRouter.post("/", async (req, res) => {
     try {
-        console.log("\nin the post (insert) apiData server side, body:");
-        console.log(req.body);
-
         let apiData: ApiData
         apiData = req.body;
         apiData.ts = Date.now();
-
-        console.log(apiData);
-
         const result = await collections.apiData.insertOne(apiData);
         if (result.acknowledged) {
             res.status(201).send(`Created a new apiData: ID ${result.insertedId}.`);

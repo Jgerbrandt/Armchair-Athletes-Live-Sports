@@ -16,8 +16,11 @@ if (!ATLAS_URI) {
     process.exit(1);
 }
 
+//attempt to connect to databse and create all collections
 connectToDatabase(ATLAS_URI)
     .then(() => {
+        //once connected the routers are connected to links ending in the collection's
+        //name, this will send HTTP requests to desired routers based on the link
         const app = express();
         app.use(cors());
         app.use("/users", userRouter);
