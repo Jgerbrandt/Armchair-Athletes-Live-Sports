@@ -7,8 +7,8 @@ import { FavTeam } from './favTeam';
   providedIn: 'root'
 })
 export class FavTeamService {
-  //private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  private url = 'http://localhost:5200';
+  private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
+  // private url = 'http://localhost:5200';
   private FavTeam$: Subject<FavTeam> = new Subject();
 
   constructor(private httpClient: HttpClient) { }
