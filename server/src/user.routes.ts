@@ -1,6 +1,7 @@
 import * as express from "express";
 import * as mongodb from "mongodb";
 import { collections } from "./database";
+import { User } from "./user";
 
 //express router will recive http calls from the client side with
 export const userRouter = express.Router();
@@ -38,7 +39,7 @@ userRouter.get("/:id", async (req, res) => {
 userRouter.get("/:email/:password", async (req, res) => {
     try {
 
-        const email = req?.params?.email;
+        const email = req?.params?.email.toLowerCase();
         const password = req?.params?.password;
         
         //here password is used a default search code to search by email alone
@@ -82,7 +83,13 @@ userRouter.get("/:email/:password", async (req, res) => {
 userRouter.post("/", async (req, res) => {
     try {
         const user = req.body;
-        const result = await collections.users.insertOne(user);
+        let newUser: User = {
+            username: user.username,
+            password: user.password, 
+            email: user.email
+        };
+        newUser.email = newUser.email.toLowerCase();
+        const result = await collections.users.insertOne(newUser);
         if (result.acknowledged) {
             res.status(201).send(`Created a new user: ID ${result.insertedId}.`);
         } else {
