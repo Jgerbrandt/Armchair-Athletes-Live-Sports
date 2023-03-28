@@ -1,10 +1,13 @@
 import * as mongodb from "mongodb";
 import { User } from "./user";
 import { ApiData } from "./apiData";
+import { FavTeam } from "./favTeam";
+
 //test
 export const collections: {
     users?: mongodb.Collection<User>;
     apiData?: mongodb.Collection<ApiData>;
+    favTeams?: mongodb.Collection<FavTeam>;
 } = {};
 
 export async function connectToDatabase(uri: string) {
@@ -14,11 +17,14 @@ export async function connectToDatabase(uri: string) {
     const db = client.db("ArmChairAthletes");
     await applySchemaValidationUsers(db);
     await applySchemaValidationApiData(db);
+    await applySchemaValidationFavTeams(db);
 
     const usersCollection = db.collection<User>("users+");
     collections.users = usersCollection;
     const apidDataCollection = db.collection<ApiData>("apiData");
     collections.apiData = apidDataCollection;
+    const favTeamsCollection = db.collection<FavTeam>("favTeams");
+    collections.favTeams = favTeamsCollection;
 }
 
 // Update our existing collection with JSON schema validation so we know our documents will always match the shape of our Employee model, even if added elsewhere.
@@ -96,6 +102,38 @@ async function applySchemaValidationApiData(db: mongodb.Db) {
     }).catch(async (error: mongodb.MongoServerError) => {
         if (error.codeName === "NamespaceNotFound") {
             await db.createCollection("apiData", {validator: jsonSchema});
+        }
+    });
+}
+
+async function applySchemaValidationFavTeams(db: mongodb.Db) {
+    const jsonSchema = {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["userID", "teamID"],
+            additionalProperties: false,
+            properties: {
+                _id: {},
+                userID: {
+                    bsonType: "string",
+                    description: "'userID' is required and is a string",
+                },
+                teamID: {
+                    bsonType: "number",
+                    description: "'teamID' is required and is a number",
+                }
+            },
+        },
+    };
+    
+
+    // Try applying the modification to the collection, if the collection doesn't exist, create it 
+   await db.command({
+        collMod: "favTeams",
+        validator: jsonSchema
+    }).catch(async (error: mongodb.MongoServerError) => {
+        if (error.codeName === "NamespaceNotFound") {
+            await db.createCollection("favTeams", {validator: jsonSchema});
         }
     });
 }
