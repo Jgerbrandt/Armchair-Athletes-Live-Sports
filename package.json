@@ -13,9 +13,9 @@
     "build": "npm run prepare && concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:server": "cd server && npm run build",
     "build:client": "cd client && npm run build",
-    "test": "npm run prepare && concurrently \"npm run test:client\" \"npm run test:server\"",
-    "test:client": "cd client && mocha",
-    "test:server": "cd server && mocha"
+    "test": "npm run prepare && concurrently \"npm run test:client\"",
+    "test:client": "mocha 'test/**/*.spec.ts'",
+    "test:server": ""
   },
   "contributors": [
     {
@@ -34,8 +34,11 @@
     "url": "https://github.com/mongodb-developer/mean-stack-example.git"
   },
   "devDependencies": {
+    "@types/mocha": "^10.0.1",
     "chai": "^4.3.7",
     "concurrently": "^7.1.0",
-    "mocha": "^10.2.0"
+    "mocha": "^10.2.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
   }
 }
