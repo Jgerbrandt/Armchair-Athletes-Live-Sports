@@ -3,21 +3,19 @@
 <table class="table" style="width:99%" >
     <thead>
         <tr>
-            <th class="left-head">Team ID</th>
+            <th class="left-head">League</th>
             <th>Team Name</th>
-            <th class="right-head">Follow</th>
+            <th class="right-head">Action</th>
         </tr>
     </thead>
 
     <tbody>
         <tr *ngFor="let team of teamsParsed$">
-            <td>{{team.id}}</td>
+            <td>NHL</td>
             <td><img class="wg_logo2" src={{team.logo}} loading="lazy" onerror='this.style.display="none"'> {{team.name}}</td>
             <td>
                 <button class="btn mt-2" (click)="followTeam(team.id || '')">Follow</button>
             </td>
         </tr>
-
-        <button class="btn mt-3" (click)="followTeam('3' || '')">Confirm</button>
     </tbody>
 </table>
