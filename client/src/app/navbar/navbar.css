@@ -37,7 +37,7 @@
 }
 
 .dropbtn{
-	text-align: center;
+    text-align: center;
  }
  
  
@@ -49,7 +49,7 @@
     border: 2px;
 }
 
-.drop-content button{
+.drop-content button{    /*Writing inside of the drop down buttons Eg. "Change font style of the words NHL Standings"*/
     border-width: 2px;
     border-color: black;
     border: solid;
@@ -58,28 +58,28 @@
     font-family:Arial, Helvetica, sans-serif;
 }
 
- .drop{
-	 position: relative;
-	 display: inline-block;
+ .drop{     /*"View standings" position for example*/
+     position: relative;
+     display: inline-block;
  }
  
- .dropitem {
+ .dropitem {        /*Background/styling of the dropdown menus, eg. NHL Standings background color*/
     border: 2px;
     background-color: rgba(181, 207, 249, 0.95);
     border-radius: 15px;
  }
  
- .drop-content:hover {
+ .drop-content {  /*Does nothing of note....?*/
     color: #f1f1f1;
 }
 
-.dropitem:hover {
+.dropitem:hover {       /*Drop down buttons outlines. Eg. "NHL Standings" is now outlined in the same color as given below*/
     transition-duration: 0.2s;
     font-weight: bold;
     transform: scale(1.2) perspective(1px);
     color: black;
 }
  
- .drop:hover .drop-content {display: block;}
-
- /*comment ignore*/
+ .drop .drop-content {       /*Structure of the words inside drop downs. Eg. Stack words ontop of one another*/
+    display: block;
+}

@@ -24,18 +24,18 @@
 </div>
     <div class="drop">
         <div class="mainButtons">
-            <button class="dropbtn">View Standings</button>
+            <button (click)="clickStandings()"class="dropbtn" >View Standings</button>
         </div>
-        <div class="drop-content">
+        <div *ngIf="standingsClicked"class="drop-content">
             <button [routerLink]="['nhlstandings/']" class="dropitem">NHL Standings</button>
             <button [routerLink]="['ahlstandings/']" class="dropitem">AHL Standings</button>
         </div>
     </div>
     <div class="drop">
         <div class="mainButtons">
-        <button class="dropbtn">View Games</button>
+        <button (click)="clickGames()" class="dropbtn">View Games</button>
     </div>
-    <div class="drop-content">
+    <div *ngIf="gameClicked"class="drop-content">
         <button [routerLink]="['nhlgames/']" class="dropitem">NHL Games</button>
         <button [routerLink]="['ahlgames/']" class="dropitem">AHL Games</button>
     </div>
