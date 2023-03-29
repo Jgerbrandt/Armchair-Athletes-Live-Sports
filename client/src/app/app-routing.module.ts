@@ -1,19 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { UsersListComponent } from './users-list/users-list.component';
-import { AddUserComponent } from './add-user/add-user.component'; // <-- add this line
-import { EditUserComponent } from './edit-user/edit-user.component'; // <-- add this line
+import { AddUserComponent } from './add-user/add-user.component';
 
-//aaron stuff VvVVVV
 import { Home } from './home/home.component';
 import { Login } from './navbar/login/login.component'
-//import { Register } from './navbar/register/register.component';
 import { NHLStandings } from './navbar/standings/nhlstandings.component';
 import { AHLStandings } from './navbar/standings/ahlstandings.component';
 import { NHLGames } from './navbar/nhlgames/nhlgames.component';
 import { AHLGames } from './navbar/ahlgames/ahlgames.component';
-//Favorite Teams VVVVVV
 import { FollowTeam } from './navbar/followteam/follow-team.component'
+
+//these routes determine what url link extension
+//will go to which component and in result which functionality
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,10 +23,7 @@ const routes: Routes = [
   { path: 'home/ahlgames', component: AHLGames },
   { path: 'home/register', component: AddUserComponent},
   { path: 'home/followteam', component: FollowTeam},
-  //OLD stuffVVVVVV
-  { path: 'users', component: UsersListComponent },
-  { path: 'users/new', component: AddUserComponent }, // <-- add this line
-  { path: 'users/edit/:id', component: EditUserComponent }]; // <-- add this line
+  { path: 'users/new', component: AddUserComponent },];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
