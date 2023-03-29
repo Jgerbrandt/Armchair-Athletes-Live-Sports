@@ -22,7 +22,7 @@ describe('Invalid Login Credentials', () => {
     await driver.findElement(By.css(".ng-untouched")).click()
     await driver.findElement(By.css(".ng-untouched")).sendKeys("email123")
     await driver.findElement(By.css(".btn")).click()
-    await new Promise((r) => setTimeout(r, 1000));  //wait for alert message
+    await new Promise((r) => setTimeout(r, 2000));  //wait for alert message
     assert((await driver.switchTo().alert().getText()) == "Incorrect Email or Password")
     //await driver.findElement(By.css("login-form > div")).click()  //not sure what this does
   })
