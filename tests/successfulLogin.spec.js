@@ -2,28 +2,31 @@
 const { Builder, By, Key, until } = require('selenium-webdriver')
 const assert = require('assert')
 
-describe('Invalid Login Credentials', () => {
+describe('Successful Login', function() {
   //this.timeout(30000)
   let driver
   let vars
-  beforeEach(async () => {
+  beforeEach(async function() {
     driver = await new Builder().forBrowser('chrome').build()
     vars = {}
   })
-  afterEach(async () => {
+  afterEach(async function() {
     await driver.quit();
   })
-  it('Invalid Login Credentials', async () => {
+  it('Successful Login', async function() {
     await driver.get("https://armchair-athletes-live-sports-c-ofsyvtifhq-uc.a.run.app/home")
     await driver.manage().window().setRect({ width: 1060, height: 815 })
     await driver.findElement(By.css("div:nth-child(1) > .mainButtons > button")).click()
     await driver.findElement(By.id("email")).click()
     await driver.findElement(By.id("email")).sendKeys("email@email.com")
     await driver.findElement(By.css(".ng-untouched")).click()
-    await driver.findElement(By.css(".ng-untouched")).sendKeys("email123")
-    await driver.findElement(By.css(".btn")).click()
-    await new Promise((r) => setTimeout(r, 1000));  //wait for alert message
-    assert((await driver.switchTo().alert().getText()) == "Incorrect Email or Password")
-    //await driver.findElement(By.css("login-form > div")).click()  //not sure what this does
+    await driver.findElement(By.css(".ng-untouched")).sendKeys("email")
+    await driver.findElement(By.css(".ng-untouched")).sendKeys(Key.ENTER)
+    await new Promise((r) => setTimeout(r, 1000));
+    await driver.findElement(By.css(".welcome")).click()
+    {
+      const elements = await driver.findElements(By.css(".welcome"))
+      assert(elements.length)
+    }
   })
 })
