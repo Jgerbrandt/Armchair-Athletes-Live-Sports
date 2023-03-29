@@ -53,4 +53,8 @@ export class FollowTeam implements OnInit {
   private async fetchTeams(): Promise<ApiData> {
     return await this.apiDataService.getTeams();
   }
+
+  goHome(){
+    this.router.navigate(['../home']);
+  }
 }
