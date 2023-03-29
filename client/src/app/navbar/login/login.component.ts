@@ -23,23 +23,17 @@ export class Login{
     this.userService.checkUser(user)
       .subscribe({
         next: (user) => {
-          //todo: here we need to store user somewhere maybe with cookies or something
-          //alert("Welcome back " + user.username);
           this.loginService.login(user);
-          
           this.router.navigate(['../home']);
         },
         error: (error) => {
           alert("Incorrect Email or Password");
-          console.error(error);
         }
       });
   }
 
-  //Functions go here
   employeeForm: FormGroup = new FormGroup({});
 
   submitForm(){
-    //not sure what this is for..
   }
 }

@@ -23,8 +23,6 @@ export class AddUserComponent {
     this.userService.checkUser(user)
     .subscribe({
       next: () => {
-        //todo: here we need to store user somewhere maybe with cookies or something
-        
         alert("This email already has an account associated with it.");
       },
       error: (error) => {
@@ -32,11 +30,10 @@ export class AddUserComponent {
         .subscribe({
           next: () => {
             this.loginService.login(user);
-            this.router.navigate(['../home']);
+            this.router.navigate(['../home/login']);
           },
           error: (error) => {
             alert("Failed to create user");
-            console.error(error);
           }
         });
       }

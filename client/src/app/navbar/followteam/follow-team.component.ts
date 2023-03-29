@@ -28,28 +28,30 @@ export class FollowTeam implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    console.log("At init for follow team");
     this.teams$ = await this.fetchTeams();
     this.teamsParsed$ = JSON.parse(this.teams$.json).response;
   }
 
   followTeam(teamID: string): void {
-    let newFavTeam: FavTeam = {teamID: teamID, userID: this.user._id};
-    console.log(`rq the user id is ${this.user._id}`);
+    let numberID = Number(teamID);
+    let newFavTeam: FavTeam = {teamID: numberID, userID: this.user._id};
 
     this.favTeamService.createFavTeam(newFavTeam)
     .subscribe({
       next: () => {
-        //this.router.navigate(['../home']);
+        //succeeded in following team
       },
       error: (error) => {
-        alert("Failed to create AMONGUS");
-        console.error(error);
+        //failed to follow team
       }
     });
   }
 
   private async fetchTeams(): Promise<ApiData> {
     return await this.apiDataService.getTeams();
+  }
+
+  goHome(){
+    this.router.navigate(['../home']);
   }
 }

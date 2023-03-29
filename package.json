@@ -1,7 +1,7 @@
 {
-  "name": "mean-stack-example",
+  "name": "arm-chair-athletes",
   "version": "1.0.0",
-  "description": "Sample CRUD application built with the MEAN stack.",
+  "description": "Live Sports website using the MEAN stack",
   "main": "index.js",
   "scripts": {
     "start": "npm run prepare && concurrently \"npm run start:server\" \"npm run start:client\"",
@@ -13,27 +13,16 @@
     "build": "npm run prepare && concurrently \"npm run build:server\" \"npm run build:client\"",
     "build:server": "cd server && npm run build",
     "build:client": "cd client && npm run build",
-    "test": "jest",
-    "test:client": "cd client && npm test",
-    "test:server": "cd server && npm test"
+    "test": "jest"
   },
-  "contributors": [
-    {
-      "name": "Abirami Sukumaran",
-      "url": "https://github.com/AbiramiSukumaran"
-    },
-    {
-      "name": "Stanimira Vlaeva",
-      "url": "https://github.com/sis0k0"
-    }
-  ],
   "license": "Apache 2.0",
-  "homepage": "https://github.com/mongodb-developer/mean-stack-example#readme",
+  "homepage": "https://armchair-athletes-live-sports-c-ofsyvtifhq-uc.a.run.app",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mongodb-developer/mean-stack-example.git"
+    "url": "https://github.com/Jgerbrandt/Armchair-Athletes-Live-Sports.git"
   },
   "devDependencies": {
+    "concurrently": "^7.1.0"
     "@types/jest": "^29.5.0",
     "concurrently": "^7.1.0",
     "jest": "^29.5.0",

@@ -7,7 +7,6 @@
     "build": "tsc",
     "test": "eslint ."
   },
-  "author": "Stanimira Vlaeva",
   "license": "Apache 2.0",
   "dependencies": {
     "cors": "^2.8.5",

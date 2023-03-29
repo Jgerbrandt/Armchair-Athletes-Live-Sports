@@ -6,7 +6,7 @@ export class LoginService{
     private user: User;
     loginEvent = new EventEmitter<User>();
 
-
+    //to begin we fill default values for a user
     constructor(){
         this.user = {username: "Guest", 
                     password: "-1",
@@ -14,15 +14,20 @@ export class LoginService{
                     _id:"-1"};
     }
 
+    //when login is called we fill the user value with
+    //the currently logged in user
     login(newUser: User){
-        //alert(newUser.username + " Logged In");
         this.user = newUser;
     }
 
+    //return current user's login
+    //information
     getUser(){
         return this.user;
     }
 
+    //resets the current 
+    //user to default information
     logout(){
         this.user = {username: "Guest", 
             password: "-1",
