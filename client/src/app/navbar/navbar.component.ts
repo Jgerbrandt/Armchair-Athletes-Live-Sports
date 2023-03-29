@@ -30,8 +30,6 @@ export class Navbar {
         this.gameClicked = true;
         this.standingsClicked = false;
       }
-      
-
     }
 
     clickStandings(){
@@ -42,8 +40,6 @@ export class Navbar {
         this.gameClicked = false;
         this.standingsClicked = true;
       }
-      
-
     }
 
     logout(): void {

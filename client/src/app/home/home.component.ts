@@ -21,8 +21,6 @@ export class Home implements OnInit{
   league: number = 57;
   favTeamData: TeamData;
   schedData: SchedData;
-  //api: apiController;
-
 
   constructor(
     private loginService: LoginService,
@@ -32,7 +30,6 @@ export class Home implements OnInit{
     ){
     this.user = this.loginService.getUser();
     this.favTeam = -1;
-    //this.api = new apiController();
 
     this.favTeamData = api.getDefaultTeam();
     this.schedData = api.getDefaultSched();
@@ -50,30 +47,13 @@ export class Home implements OnInit{
       next: 
       (response)=> {this.favTeam = response.teamID;
 
-    //alert("Fav Team Before API Call: " + this.favTeam);
     temp = this.api.makeTeamCall(this.league, this.season, this.favTeam);
     temp.then((data) => {this.favTeamData = data})
     let tempSched: Promise<SchedData>;
     tempSched = this.api.makeSchedCall(this.league, this.season, this.favTeam);
     tempSched.then((data) => {this.schedData = data; data.response.reverse()})
     .then((sliced) => {this.schedData.response.forEach((game, i) => {this.schedData.response[i].date = new Date(Date.parse(game.date)).toString().substring(0, 21)})})
-    //let tempObs: Observable<FavTeam>;
       }})
     }
-    
-    
-
-
-
-    //alert("Home: "+ teamData);
-      //this.favTeamData = this.api.makeCall("teams?id="+this.favTeam);
-    //alert(this.api.makeCall("teams?id="+this.favTeam));
-     // alert(teamData);
-    
   }
-
-  // updateText(){
-  //   let widget = document.getElementById("wg-api-hockey-standings");
-  //   text?.innerHTML 
-  // }
 }

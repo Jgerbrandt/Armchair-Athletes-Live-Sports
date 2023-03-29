@@ -10,17 +10,25 @@ import { TeamData } from './apiController/teamData';
 })
 export class ApiDataService {
   private url = 'https://armchair-athletes-live-sports-s-ofsyvtifhq-uc.a.run.app';
-  // private url = 'http://localhost:5200';
+  //private url = 'http://localhost:5200';
   private teamsJson$: ApiData;
+
+  //currently we are only using NHL teams in the current 2022 season
+  //later versions are scalable to include other leagues and other seasons
   private league = 57; //nhl
   private season = 2022; //current season
 
 
   constructor(private httpClient: HttpClient, private api: apiController) { }
 
+
+  //this function is created to get the teams API data from the database if possible
+  //this is done to reduce the number of api calls as they are limited and slow
+  //if the data is not already stored or if it is too old and stale, the client side
+  //will make an api call to get the data, and then send an updated json text to the db
+  //so it will have the latest information for the next user to make this call
   async wrapingRefreshTeamsSubscription(): Promise<ApiData>{
     return new Promise((resolve, reject) => {
-
       let apiData: ApiData;
       //Here we do HTTP GET call to see if the teams are already stored
       let httpResponse = this.httpClient.get<ApiData>(`${this.url}/apiData/teams`);
@@ -50,8 +58,7 @@ export class ApiDataService {
                 console.log("ApiData for teams was successfully store");
               },
               error: (error) => {
-                alert("Failed to create ApiData for teams");
-                console.error(error);
+                //failed to create API data for Teams
               }
             });
             resolve(apiData);
@@ -62,21 +69,21 @@ export class ApiDataService {
     });
   }
 
-
+  //this function is called before we print the teams out to ensure 
+  //all the lasted information is being displayed
   private async refreshTeams(): Promise<ApiData> {
-    console.log("In refresh teams (ApiData)");
+    //first create a default API data object that is fully empty
     let teamsApiData: ApiData = {flag: "", json: ""};
+    //here we send it to the function that will get the teams data from either
+    //local db (if avaliable) or get it from the API which will refresh the 
+    //db for future calls
     teamsApiData = await this.wrapingRefreshTeamsSubscription();
     return teamsApiData;
   }
 
   async getTeams(): Promise<ApiData> {
-    console.log(`In get teams (ApiData)`);
+    //here we are simply returning the teams after getting the 
+    //latest version referesed
     return await this.refreshTeams();
   }
-
-  getTeam(id: string): Observable<ApiData> {
-    return this.httpClient.get<ApiData>(`${this.url}/apiData/teams`);
-  }
-
 }

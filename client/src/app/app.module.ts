@@ -3,28 +3,27 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UsersListComponent } from './users-list/users-list.component';
 import { UserFormComponent } from './user-form/user-form.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AddUserComponent } from './add-user/add-user.component';
-import { EditUserComponent } from './edit-user/edit-user.component'; // <-- add this line
 
-//aaron stuff VVV
 import { Home } from './home/home.component';
 import { Navbar } from './navbar/navbar.component';
 import { Login }  from './navbar/login/login.component';
 import { LoginFormComponent } from './navbar/login/login-form.components';
-//Favorite team VVVVV
 import { FollowTeam } from './navbar/followteam/follow-team.component';
+
+//this file is usedd to add all the working components (classes and functionality)
+//to angular's current working modules and is how files are able to work with each other 
+//and communicate in the client side
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    UsersListComponent,
     UserFormComponent,
     AddUserComponent,
-    EditUserComponent,
     Home,
     Navbar,
     Login,
@@ -35,7 +34,7 @@ import { FollowTeam } from './navbar/followteam/follow-team.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule, // <-- add this line
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
