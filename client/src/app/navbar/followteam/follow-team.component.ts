@@ -34,7 +34,8 @@ export class FollowTeam implements OnInit {
   }
 
   followTeam(teamID: string): void {
-    let newFavTeam: FavTeam = {teamID: teamID, userID: this.user._id};
+    let numberID = Number(teamID);
+    let newFavTeam: FavTeam = {teamID: numberID, userID: this.user._id};
     console.log(`rq the user id is ${this.user._id}`);
 
     this.favTeamService.createFavTeam(newFavTeam)
@@ -51,5 +52,9 @@ export class FollowTeam implements OnInit {
 
   private async fetchTeams(): Promise<ApiData> {
     return await this.apiDataService.getTeams();
+  }
+
+  goHome(){
+    this.router.navigate(['../home']);
   }
 }
