@@ -3,10 +3,16 @@ import { User } from "./user";
 import { ApiData } from "./apiData";
 import { FavTeam } from "./favTeam";
 
-//test
+//list of mongo databases 
 export const collections: {
+    //users stores the user's email, password, and username
     users?: mongodb.Collection<User>;
+    //apiData stors the api calls in the form of json data
+    //this collection is used to reduce api calls when possible
     apiData?: mongodb.Collection<ApiData>;
+    //favTeams this stores user's favorite teams, right now user's
+    //can only have one favourite team but this db has potential to
+    //scale to multiple favourites
     favTeams?: mongodb.Collection<FavTeam>;
 } = {};
 
@@ -14,11 +20,14 @@ export async function connectToDatabase(uri: string) {
     const client = new mongodb.MongoClient(uri);
     await client.connect();
 
+    //connect to the database
     const db = client.db("ArmChairAthletes");
+    //ensure all the collections exist and match the schema
     await applySchemaValidationUsers(db);
     await applySchemaValidationApiData(db);
     await applySchemaValidationFavTeams(db);
 
+    //connect the collections
     const usersCollection = db.collection<User>("users+");
     collections.users = usersCollection;
     const apidDataCollection = db.collection<ApiData>("apiData");
@@ -49,7 +58,7 @@ async function applySchemaValidationUsers(db: mongodb.Db) {
                 email:  {
                     description: "Email of the user",
                     bsonType: "string",
-                    pattern: "^\\S+@\\S+\\.\\S+$",
+                    pattern: "^\\S+@\\S+\\.\\S+$", //regex pattern for email format
                     minLength: 6,
                     maxLength: 127
                 }
@@ -78,15 +87,15 @@ async function applySchemaValidationApiData(db: mongodb.Db) {
             additionalProperties: false,
             properties: {
                 _id: {},
-                ts: {
+                ts: { //timestamp for time sensitive apiData
                     bsonType: "number",
                     description: "'ts' is required and is a number"
                 },
-                flag: {
+                flag: { //indicates the type of data being stored in json
                     bsonType: "string",
                     description: "'flag' is required and is a string"
                 },
-                json: {
+                json: { //json formatted data from sports api calls
                     bsonType: "string",
                     description: "'json' is required and is a string"
                 }

@@ -3,12 +3,17 @@ import * as mongodb from "mongodb";
 import { collections } from "./database";
 import { FavTeam } from "./favTeam";
 
+//express router will recive http calls from the client side with
 export const favTeamRouter = express.Router();
 favTeamRouter.use(express.json());
 
+//this function will get the user's favourite team information
+//based on what the logged in user's ID
 favTeamRouter.get("/:userID", async (req, res) => {
     try {
         const userID = req?.params?.userID;
+        //create a query that searches for stored information about
+        //the users favourite team
         const query = { userID: userID };
         const favTeam = await collections.favTeams.findOne(query);
 
@@ -22,6 +27,8 @@ favTeamRouter.get("/:userID", async (req, res) => {
     }
 });
 
+//this function will remove the users previously saved favourite team
+//data if they have saved on before, then it will store their new favourited team
 favTeamRouter.post("/", async (req, res) => {
     try {
         //here we try to delete the users favorite team so we can replace it
