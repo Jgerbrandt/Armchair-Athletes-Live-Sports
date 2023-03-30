@@ -10,6 +10,10 @@ This is a web application for viewing live sports results for different hockey l
 
 <https://github.com/Jgerbrandt/Armchair-Athletes-Live-Sports.git>
 
+## API Used
+
+<https://api-sports.io/>
+
 ## Contributors
 
 [Jesse Gerbrandt](https://github.com/Jgerbrandt)
